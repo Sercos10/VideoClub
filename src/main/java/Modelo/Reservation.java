@@ -1,25 +1,37 @@
-package model;
+package Modelo;
 
+import Enums.Status;
 import Interfaces.IClient;
 import Interfaces.IProduct;
 import Interfaces.IReservation;
 
-public class Reservation implements IReservation {
+import java.io.Serializable;
+
+public class Reservation implements Serializable,IReservation {
+
+    private static final long serialVersionUID= 1L;
+
     private Integer ID;
-    private String DateReser    ;
+    private String DateReser;
+    private String FinalDate;
+    private Status status;
     private IClient client;
     private IProduct product;
 
     public Reservation(){
         this.ID=-1;
         this.DateReser="";
+        this.FinalDate="";
+        this.status=null;
         this.client=null;
         this.product=null;
     }
 
-    public Reservation(Integer ID, String Date, IClient client, IProduct product){
+    public Reservation(Integer ID, String Date, String FinalDate, Status status,IClient client, IProduct product){
         this.ID=ID;
         this.DateReser=Date;
+        this.FinalDate=FinalDate;
+        this.status=status;
         this.client=client;
         this.product=product;
     }
@@ -28,13 +40,52 @@ public class Reservation implements IReservation {
         return null;
     }
 
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
     @Override
     public String getDateReser() {
         return null;
     }
 
-    @Override
-    public int hashcode() {
-        return 0;
+    public void setDateReser(String dateReser) {
+        DateReser = dateReser;
+    }
+
+    public String getFinalDate() {
+        return FinalDate;
+    }
+
+    public void setFinalDate(String finalDate) {
+        FinalDate = finalDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public IClient getClient() {
+        return client;
+    }
+
+    public void setClient(IClient client) {
+        this.client = client;
+    }
+
+    public IProduct getProduct() {
+        return product;
+    }
+
+    public void setProduct(IProduct product) {
+        this.product = product;
+    }
+
+    public boolean equals(Object o){
+        return false;
     }
 }
