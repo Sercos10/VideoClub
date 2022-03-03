@@ -8,6 +8,5 @@ public interface IProduct {
     void setDescription(String Description);
     void setID(Integer ID);
     boolean equals(Object o);
-    int hashcode();
     String toString();
 }
