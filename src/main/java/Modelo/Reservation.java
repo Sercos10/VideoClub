@@ -1,10 +1,15 @@
-package model;
+package Modelo;
+
+import java.io.Serializable;
 
 import Interfaces.IClient;
 import Interfaces.IProduct;
 import Interfaces.IReservation;
 
-public class Reservation implements IReservation {
+public class Reservation implements Serializable, IReservation {
+
+	private static final long serialVersionUID = 1L;
+	
     private Integer ID;
     private String DateReser    ;
     private IClient client;
@@ -23,18 +28,16 @@ public class Reservation implements IReservation {
         this.client=client;
         this.product=product;
     }
-    @Override
+   
     public Integer getID() {
         return null;
     }
 
-    @Override
     public String getDateReser() {
         return null;
     }
-
-    @Override
-    public int hashcode() {
-        return 0;
+    
+    public boolean equals(Object obj) {
+		return false;
     }
 }
