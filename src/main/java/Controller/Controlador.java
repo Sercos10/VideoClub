@@ -19,7 +19,6 @@ public class Controlador implements IController{
 	IRespoReservation RepoReserva;
 	
 	
-	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
