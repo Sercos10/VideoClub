@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Enums.Category;
+
 public interface IRepoProduct {
 	void showProductList();
 	boolean addProduct (IProduct p);
