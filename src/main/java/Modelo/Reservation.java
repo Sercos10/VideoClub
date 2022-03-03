@@ -1,10 +1,15 @@
 package Modelo;
 
+import java.io.Serializable;
+
 import Interfaces.IClient;
 import Interfaces.IProduct;
 import Interfaces.IReservation;
 
-public class Reservation implements IReservation {
+public class Reservation implements Serializable, IReservation {
+
+	private static final long serialVersionUID = 1L;
+	
     private Integer ID;
     private String DateReser    ;
     private IClient client;
