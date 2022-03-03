@@ -1,4 +1,4 @@
-package model;
+package Modelo;
 
 import Interfaces.IClient;
 import Interfaces.IProduct;
@@ -23,18 +23,16 @@ public class Reservation implements IReservation {
         this.client=client;
         this.product=product;
     }
-    @Override
+   
     public Integer getID() {
         return null;
     }
 
-    @Override
     public String getDateReser() {
         return null;
     }
-
-    @Override
-    public int hashcode() {
-        return 0;
+    
+    public boolean equals(Object obj) {
+		return false;
     }
 }

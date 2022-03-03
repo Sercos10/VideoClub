@@ -1,4 +1,4 @@
-package model;
+package Modelo;
 
 import Interfaces.*;
 
@@ -7,7 +7,11 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RepoReservation implements Serializable, IRepoReservation {
+import Enums.Status;
+
+public class RepoReservation implements Serializable, IRespoReservation {
+	
+	IVista vista;
 
     private static RepoReservation instance = null;
     private static final long serialVersionUID=1L;
@@ -46,7 +50,7 @@ public class RepoReservation implements Serializable, IRepoReservation {
             for (Map.Entry<Integer, IReservation> r: reservations.entrySet()) {
                     if (r.getKey().equals(ID)){
                         IVista vista;
-                        vista.showMenuModify();
+                        vista.showMenuModifyReservation();
                         int opcion=vista.leeEntero("Introduce la opcion que quieras modificar");
                         switch (opcion){
                             case 1:
@@ -72,18 +76,15 @@ public class RepoReservation implements Serializable, IRepoReservation {
         return deleted;
     }
 
-    @Override
     public void modifyFechaCreacion(Integer ID, String date) {
 
     }
 
-    @Override
     public void modifyFechaFinal(Integer ID, String date) {
 
     }
 
-    @Override
-    public void modifyStatus(Integer ID, String status) {
+    public void modifyStatus(Integer ID, Status status) {
 
     }
 
