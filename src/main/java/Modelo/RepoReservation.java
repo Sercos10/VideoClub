@@ -7,20 +7,26 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+@XmlRootElement(name="RepoReservation")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RepoReservation implements Serializable, IRespoReservation {
 
     private static final long serialVersionUID=1L;
+
     private static RepoReservation _instance;
 
-    HashMap <Integer, Reservation> reservations;
+    private HashMap <Integer, Reservation> reservations;
 
-    public RepoReservation() {
+    private RepoReservation() {
         reservations= new HashMap <Integer, Reservation>();
     }
 
@@ -56,14 +62,12 @@ public class RepoReservation implements Serializable, IRespoReservation {
         return deleted;
     }
 
-    @Override
     public void modifyFechaCreacion(Integer ID, String date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setDateReser(date);
         }
     }
 
-    @Override
     public void modifyFechaFinal(Integer ID, String date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setFinalDate(date);
@@ -72,7 +76,7 @@ public class RepoReservation implements Serializable, IRespoReservation {
 
     @Override
     public void modifyStatus(Integer ID, Status status) {
-        if (reservations!=null&&reservations.containsKey(ID)){
+        if (reservations != null && reservations.containsKey(ID)) {
             reservations.get(ID).setStatus(status);
         }
     }
@@ -85,6 +89,7 @@ public class RepoReservation implements Serializable, IRespoReservation {
             }
         }
     }
+
     public void saveFile(String url) {
         JAXBContext contexto;
         try {
@@ -98,6 +103,7 @@ public class RepoReservation implements Serializable, IRespoReservation {
             e.printStackTrace();
         }
     }
+
     public void loadFile(String url) {
         JAXBContext contexto;
         try {

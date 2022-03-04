@@ -7,9 +7,9 @@ import Interfaces.IReservation;
 
 import java.io.Serializable;
 
-public class Reservation implements Serializable,IReservation {
+public class Reservation implements Serializable, IReservation {
 
-    private static final long serialVersionUID= 1L;
+	private static final long serialVersionUID = 1L;
 
     private Integer ID;
     private String DateReser;
@@ -35,7 +35,7 @@ public class Reservation implements Serializable,IReservation {
         this.client=client;
         this.product=product;
     }
-    @Override
+   
     public Integer getID() {
         return null;
     }
@@ -46,7 +46,7 @@ public class Reservation implements Serializable,IReservation {
 
     @Override
     public String getDateReser() {
-        return null;
+        return this.DateReser;
     }
 
     public void setDateReser(String dateReser) {
@@ -85,7 +85,32 @@ public class Reservation implements Serializable,IReservation {
         this.product = product;
     }
 
-    public boolean equals(Object o){
-        return false;
+    public boolean equals(Object obj){
+        boolean valid=false;
+        if(obj!=null) {
+            if(this==obj) {
+                valid=true;
+            }else {
+                if(this.getClass()==obj.getClass()) {
+                    Client tmp= (Client) obj;
+                    if(this.getClass().equals(tmp.getClass())) {
+                        valid=true;
+                    }
+                }
+            }
+        }
+        return valid;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "ID=" + ID +
+                ", DateReser='" + DateReser + '\'' +
+                ", FinalDate='" + FinalDate + '\'' +
+                ", status=" + status +
+                ", client=" + client +
+                ", product=" + product +
+                '}';
     }
 }
