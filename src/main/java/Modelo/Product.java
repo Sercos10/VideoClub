@@ -51,7 +51,14 @@ public class Product implements IProduct, Serializable {
 	public void setID(Integer id) {
 		this.id = id;
 	}
-
+	
+	public Product(String name, Float price, String description, Integer id) {
+		super();
+		Name = name;
+		this.price = price;
+		this.description = description;
+		this.id = id;
+	}
 
 	public boolean equals(Object obj) {
 		if (this == obj)

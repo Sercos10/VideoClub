@@ -27,6 +27,7 @@ public class RepoProduct implements IRepoProduct {
 	}
 
 	public void showProductList() {
+		
 	}
 
 	public static RepoProduct getInstance() {
@@ -104,8 +105,6 @@ public class RepoProduct implements IRepoProduct {
 	}
 
 	public void modifyCategory(Integer ID, Category category) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
