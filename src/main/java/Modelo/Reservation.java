@@ -44,7 +44,6 @@ public class Reservation implements Serializable, IReservation {
     public void setID(Integer ID) {
         this.ID = ID;
     }
-
     public LocalDateTime getDateReser() {
         return this.DateReser;
     }
