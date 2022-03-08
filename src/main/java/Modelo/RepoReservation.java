@@ -1,103 +1,119 @@
 package Modelo;
 
+import Enums.Status;
 import Interfaces.*;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import Enums.Status;
-
+@XmlRootElement(name="RepoReservation")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RepoReservation implements Serializable, IRespoReservation {
-	
-	IVista vista;
 
-    private static RepoReservation instance = null;
     private static final long serialVersionUID=1L;
-    private RepoReservation(){
 
+    private static RepoReservation _instance;
+
+    private HashMap <Integer, Reservation> reservations;
+
+    private RepoReservation() {
+        reservations= new HashMap <Integer, Reservation>();
     }
-    public static RepoReservation newInstance(){
-        if(instance==null){
-            instance = new RepoReservation();
-        }else{
-            return instance;
+
+    public static RepoReservation getInstance() {
+        if (_instance==null) {
+            _instance=new RepoReservation();
         }
-        return instance;
+        return _instance;
     }
-    private HashMap<Integer, IReservation> reservations;
-
     public boolean addReservation(Integer ID,IClient client, IProduct product){
         boolean added=false;
         if (client!=null&&product!=null){
-            for (Map.Entry<Integer, IReservation> r: reservations.entrySet()) {
-                if (!r.getKey().equals(ID)){
-                    added=true;
-                }
+            if (reservations!=null&&!reservations.containsKey(ID)){
+                LocalDate created= LocalDate.now();
+                LocalDate expired = created.plusWeeks(7);
+                String expirado= ""+expired;
+                Status status= Status.RESERVADO;
+                String date= ""+created;
+                IReservation reservation= new Reservation(ID,date,expirado,status, client, product);
+                reservations.put(ID, (Reservation) reservation);
+                added=true;
             }
-            LocalDate created= LocalDate.now();
-            String date= ""+created;
-            IReservation reservation= new Reservation(ID,date, client, product);
-            reservations.put(ID,reservation);
         }
         return added;
     }
 
-    public IReservation modifyReservation(Integer ID,IReservation reservation){
-        IReservation temp= new Reservation();
-        if (reservation!=null){
-            for (Map.Entry<Integer, IReservation> r: reservations.entrySet()) {
-                    if (r.getKey().equals(ID)){
-                        IVista vista;
-                        vista.showMenuModifyReservation();
-                        int opcion=vista.leeEntero("Introduce la opcion que quieras modificar");
-                        switch (opcion){
-                            case 1:
-                        }
-                }
-            }
-        }
-    }
-
     public boolean delReservation(Integer ID){
         boolean deleted=false;
-        IVista vista;
-        for (Map.Entry<Integer, IReservation> r: reservations.entrySet()) {
-            if (!r.getKey().equals(ID)){
-                reservations.remove(ID);
-                vista.print("Reserva eliminada con exito");
-                deleted=true;
-            }
-        }
-        if (!deleted){
-            vista.print("No se ha podido eliminar la reserva porque el ID intoducido no coincide con el de ninguna reserva");
+        if (reservations!=null&&reservations.containsKey(ID)){
+            reservations.remove(ID);
+            deleted=true;
         }
         return deleted;
     }
 
     public void modifyFechaCreacion(Integer ID, String date) {
-
+        if (reservations!=null&&reservations.containsKey(ID)){
+            reservations.get(ID).setDateReser(date);
+        }
     }
 
     public void modifyFechaFinal(Integer ID, String date) {
-
+        if (reservations!=null&&reservations.containsKey(ID)){
+            reservations.get(ID).setFinalDate(date);
+        }
     }
 
+    @Override
     public void modifyStatus(Integer ID, Status status) {
-
+        if (reservations != null && reservations.containsKey(ID)) {
+            reservations.get(ID).setStatus(status);
+        }
     }
 
     public void showReservations(){
-        for (Map.Entry<Integer, IReservation> r : reservations.entrySet()) {
-            System.out.println("ID= " + r.getKey());
-            System.out.println("Reserva= " + r.getValue());
+        if (reservations!=null){
+            for (Map.Entry<Integer, Reservation> r : reservations.entrySet()) {
+                System.out.println("ID= " + r.getKey());
+                System.out.println("Reserva= " + r.getValue());
+            }
         }
     }
+
     public void saveFile(String url) {
+        JAXBContext contexto;
+        try {
+            contexto = JAXBContext.newInstance(RepoReservation.class);
+            Marshaller m = contexto.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
+            m.marshal(_instance, new File(url));
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
-    public void loadFile(String url) {
 
+    public void loadFile(String url) {
+        JAXBContext contexto;
+        try {
+            contexto = JAXBContext.newInstance(RepoReservation.class);
+            Unmarshaller um = contexto.createUnmarshaller();
+
+            RepoReservation newRepoReservation = (RepoReservation) um.unmarshal( new File(url) );
+            reservations=newRepoReservation.reservations;
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 }
