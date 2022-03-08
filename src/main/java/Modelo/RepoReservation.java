@@ -74,12 +74,15 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
     }
 
-    @Override
     public void modifyStatus(Integer ID, Status status) {
         if (reservations != null && reservations.containsKey(ID)) {
             reservations.get(ID).setStatus(status);
         }
     }
+    
+    public IReservation searchReservation(Integer ID) {
+		return(this.reservations.get(ID));
+	}
 
     public void showReservations(){
         if (reservations!=null){

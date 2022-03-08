@@ -44,7 +44,6 @@ public class Reservation implements Serializable, IReservation {
         this.ID = ID;
     }
 
-    @Override
     public String getDateReser() {
         return this.DateReser;
     }
