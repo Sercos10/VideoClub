@@ -4,14 +4,10 @@ import Interfaces.ICopia;
 
 public class Copia implements ICopia{
 	
-	private Integer id;
-	private String name;
+	private Integer id_copia;
 
 	public Integer getID() {
-		return id;
+		return id_copia;
 	}
 
-	public String getName() {
-		return name;
-	}
 }

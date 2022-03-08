@@ -14,7 +14,7 @@ public class Vista implements IVista{
 	}
 
 	public void showMenuClient() {
-		System.out.println("1. Añadir cliente");
+		System.out.println("1. Anadir cliente");
 		System.out.println("2. Eliminar cliente");
 		System.out.println("3. Modificar cliente");
 		System.out.println("4. Mostrar clientes");
@@ -23,11 +23,18 @@ public class Vista implements IVista{
 	}
 
 	public void showMenuProduct() {
-		System.out.println("1. Añadir producto");
+		System.out.println("1. Anadir producto");
 		System.out.println("2. Eliminar producto");
 		System.out.println("3. Modificar producto");
 		System.out.println("4. Mostrar producto");
-		System.out.println("5. Volver");
+		System.out.println("5. Copias");
+		System.out.println("6. Volver");
+	}
+
+	public void showMenuCopia() {
+		System.out.println("1. Anadir copia");
+		System.out.println("2. Eliminar copia");
+		System.out.println("3. Volver");
 	}
 
 	public void showMenuReservation() {
@@ -40,23 +47,23 @@ public class Vista implements IVista{
 
 	public void showMenuModifyClient() {
 		System.out.println("1. Modificar nombre");
-		System.out.println("2. Modificar teléfono");
+		System.out.println("2. Modificar telefono");
 		System.out.println("3. Modificar fecha de alta");
-		System.out.println("4. Modificar dirección");
+		System.out.println("4. Modificar direccion");
 		System.out.println("5. Modificar edad");
 		System.out.println("6. Volver");
 	}
 
 	public void showMenuModifyProduct() {
 		System.out.println("1. Modificar nombre");
-		System.out.println("2. Modificar descripción");
+		System.out.println("2. Modificar descripcion");
 		System.out.println("3. Modificar precio");
-		System.out.println("4. Modificar categoría");
+		System.out.println("4. Modificar categoria");
 		System.out.println("5. Volver");
 	}
 
 	public void showMenuModifyReservation() {
-		System.out.println("1. Modificar fecha de creación");
+		System.out.println("1. Modificar fecha de creacion");
 		System.out.println("2. Modificar fecha final");
 		System.out.println("3. Modificar estado de la reserva");
 		System.out.println("4. Volver");
@@ -112,7 +119,7 @@ public class Vista implements IVista{
 		boolean valid= false;
 		Integer opcion=0;
 		do {
-			opcion=leeEntero("Introduzca una opción");
+			opcion=leeEntero("Introduzca una opcion");
 			if(opcion<1 || opcion>3);
 		}while(valid);
 		return opcion;
@@ -122,7 +129,7 @@ public class Vista implements IVista{
 		boolean valid= false;
 		Integer opcion=0;
 		do {
-			opcion=leeEntero("Introduzca una opción");
+			opcion=leeEntero("Introduzca una opcion");
 			if(opcion<1 || opcion>6);
 		}while(valid);
 		return opcion;
@@ -132,7 +139,7 @@ public class Vista implements IVista{
 		boolean valid= false;
 		Integer opcion=0;
 		do {
-			opcion=leeEntero("Introduzca una opción");
+			opcion=leeEntero("Introduzca una opcion");
 			if(opcion<1 || opcion>5);
 		}while(valid);
 		return opcion;
@@ -142,7 +149,7 @@ public class Vista implements IVista{
 		boolean valid= false;
 		Integer opcion=0;
 		do {
-			opcion=leeEntero("Introduzca una opción");
+			opcion=leeEntero("Introduzca una opcion");
 			if(opcion<1 || opcion>4);
 		}while(valid);
 		return opcion;

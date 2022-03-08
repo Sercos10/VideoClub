@@ -9,6 +9,7 @@ public interface IRespoReservation {
 	void modifyFechaCreacion(Integer ID, String date);
 	void modifyFechaFinal(Integer ID, String date);
 	void modifyStatus(Integer ID, Status status);
+	IReservation searchReservation(Integer ID);
     void saveFile(String url);
     void loadFile(String url);
 }
