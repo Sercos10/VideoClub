@@ -86,11 +86,10 @@ public class RepoClient implements Serializable, IReposClient{
 		return added;
 	}
 	
-	public boolean removeClient(IClient c) {
-		Client aux= (Client) c;
+	public boolean removeClient(Integer ID) {
 		boolean removed=false;
-		if(this.clientlist.containsKey(aux.getID())) {
-			this.clientlist.remove(aux.getID());
+		if(this.clientlist.containsKey(ID)) {
+			this.clientlist.remove(ID);
 			removed=true;
 		}
 		return removed; 
