@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import Enums.Category;
 import Interfaces.IProduct;
 
 @XmlRootElement(name = "Producto")
@@ -19,6 +20,9 @@ public class Product implements IProduct, Serializable {
 	private String description;
 	@XmlAttribute(name = "identificador")
 	private Integer id;
+	private Category category;
+	private Integer num_cop;
+	
 
 	public String getName() {
 		return Name;
@@ -52,12 +56,29 @@ public class Product implements IProduct, Serializable {
 		this.id = id;
 	}
 	
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	public Product(String name, Float price, String description, Integer id) {
 		super();
 		Name = name;
 		this.price = price;
 		this.description = description;
 		this.id = id;
+	}
+	
+	public String toString() {
+		return "Product [Name=" + Name + ", price=" + price + ", description=" + description + ", id=" + id
+				+ ", category=" + category + ", num_cop=" + num_cop + "]";
+	}
+
+	public Product() {
 	}
 
 	public boolean equals(Object obj) {

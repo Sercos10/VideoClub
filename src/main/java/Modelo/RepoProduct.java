@@ -19,15 +19,17 @@ import Interfaces.IRepoProduct;
 @XmlRootElement(name = "RepoProduct")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RepoProduct implements IRepoProduct {
-	private HashMap<Integer, IProduct> productList;
+	private HashMap<Integer, Product> productList;
 	private static RepoProduct _instance;
 	
 	private RepoProduct() {
-		productList = new HashMap<Integer, IProduct>();
+		productList = new HashMap<Integer, Product>();
 	}
 
 	public void showProductList() {
-		
+		for(Integer key:productList.keySet()) {
+			System.out.println("ID: " +key+ "Value: " +productList.get(key));
+		}
 	}
 
 	public static RepoProduct getInstance() {
@@ -41,7 +43,7 @@ public class RepoProduct implements IRepoProduct {
 		boolean added = false;
 		if (p != null) {
 			if (!productList.containsKey(p.getID())) {
-				productList.put(p.getID(), p);
+				productList.put(p.getID(), (Product) p);
 				added = true;
 			}
 		}
@@ -78,9 +80,9 @@ public class RepoProduct implements IRepoProduct {
 	}
 
 	public void saveFile(String url) {
-		JAXBContextFactory contexto;
+		JAXBContext contexto;
 		try {
-			contexto = (JAXBContextFactory) JAXBContext.newInstance(RepoProduct.class);
+			contexto = JAXBContext.newInstance(RepoProduct.class);
 			Marshaller m = ((JAXBContext) contexto).createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
@@ -105,6 +107,14 @@ public class RepoProduct implements IRepoProduct {
 	}
 
 	public void modifyCategory(Integer ID, Category category) {
+		if (productList.containsKey(ID)) {
+			productList.get(ID).setCategory(category);
+		}
+	}
+
+	public IProduct searchProduct(Integer ID) {
+		
+		return null;
 	}
 
 }
