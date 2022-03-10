@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,12 +45,10 @@ public class RepoReservation implements Serializable, IRespoReservation {
         boolean added=false;
         if (client!=null&&copia!=null){
             if (reservations!=null&&!reservations.containsKey(ID)){
-                LocalDate created= LocalDate.now();
-                LocalDate expired = created.plusWeeks(7);
-                String expirado= ""+expired;
+                LocalDateTime created= LocalDateTime.now();
+                LocalDateTime expired = created.plusWeeks(7);
                 Status status= Status.RESERVADO;
-                String date= ""+created;
-                IReservation reservation= new Reservation(ID,date,expirado,status, client, copia);
+                IReservation reservation= new Reservation(ID,created,expired,status, client, copia);
                 reservations.put(ID, (Reservation) reservation);
                 added=true;
             }
@@ -66,13 +65,13 @@ public class RepoReservation implements Serializable, IRespoReservation {
         return deleted;
     }
 
-    public void modifyFechaCreacion(Integer ID, String date) {
+    public void modifyFechaCreacion(Integer ID, LocalDateTime date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setDateReser(date);
         }
     }
 
-    public void modifyFechaFinal(Integer ID, String date) {
+    public void modifyFechaFinal(Integer ID, LocalDateTime date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setFinalDate(date);
         }
@@ -87,6 +86,15 @@ public class RepoReservation implements Serializable, IRespoReservation {
     public IReservation searchReservation(Integer ID) {
 		return(this.reservations.get(ID));
 	}
+
+    public void showReservations(){
+        if (reservations!=null){
+            for (Map.Entry<Integer, Reservation> r : reservations.entrySet()) {
+                System.out.println("ID= " + r.getKey());
+                System.out.println("Reserva= " + r.getValue());
+            }
+        }
+    }
 
     public void saveFile(String url) {
         JAXBContext contexto;

@@ -7,28 +7,29 @@ import Interfaces.IProduct;
 import Interfaces.IReservation;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Reservation implements Serializable, IReservation {
 
 	private static final long serialVersionUID = 1L;
 
     private Integer ID;
-    private String DateReser;
-    private String FinalDate;
+    private LocalDateTime DateReser;
+    private LocalDateTime FinalDate;
     private Status status;
     private IClient client;
     private ICopia copia;
 
     public Reservation(){
         this.ID=-1;
-        this.DateReser="";
-        this.FinalDate="";
+        this.DateReser=null;
+        this.FinalDate=null;
         this.status=null;
         this.client=null;
         this.copia=null;
     }
 
-    public Reservation(Integer ID, String Date, String FinalDate, Status status,IClient client, ICopia copia){
+    public Reservation(Integer ID, LocalDateTime Date, LocalDateTime FinalDate, Status status,IClient client, ICopia copia){
         this.ID=ID;
         this.DateReser=Date;
         this.FinalDate=FinalDate;
@@ -38,26 +39,25 @@ public class Reservation implements Serializable, IReservation {
     }
    
     public Integer getID() {
-        return null;
+        return this.ID;
     }
 
     public void setID(Integer ID) {
         this.ID = ID;
     }
-
-    public String getDateReser() {
+    public LocalDateTime getDateReser() {
         return this.DateReser;
     }
 
-    public void setDateReser(String dateReser) {
+    public void setDateReser(LocalDateTime dateReser) {
         DateReser = dateReser;
     }
 
-    public String getFinalDate() {
+    public LocalDateTime getFinalDate() {
         return FinalDate;
     }
 
-    public void setFinalDate(String finalDate) {
+    public void setFinalDate(LocalDateTime finalDate) {
         FinalDate = finalDate;
     }
 
