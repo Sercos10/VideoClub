@@ -30,6 +30,10 @@ public class RepoReservation implements Serializable, IRespoReservation {
     private RepoReservation() {
         reservations= new HashMap <Integer, Reservation>();
     }
+    
+    public HashMap<Integer, Reservation> getReservations(){
+		return reservations;
+	}
 
     public static RepoReservation getInstance() {
         if (_instance==null) {
@@ -37,15 +41,14 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
         return _instance;
     }
-    public boolean addReservation(Integer ID,IClient client, IProduct product){
+    public boolean addReservation(Integer ID,IClient client, ICopia copia){
         boolean added=false;
-        if (client!=null&&product!=null){
+        if (client!=null&&copia!=null){
             if (reservations!=null&&!reservations.containsKey(ID)){
                 LocalDateTime created= LocalDateTime.now();
                 LocalDateTime expired = created.plusWeeks(7);
-
                 Status status= Status.RESERVADO;
-                IReservation reservation= new Reservation(ID,created,expired,status, client, product);
+                IReservation reservation= new Reservation(ID,created,expired,status, client, copia);
                 reservations.put(ID, (Reservation) reservation);
                 added=true;
             }
@@ -83,15 +86,6 @@ public class RepoReservation implements Serializable, IRespoReservation {
     public IReservation searchReservation(Integer ID) {
 		return(this.reservations.get(ID));
 	}
-
-    @Override
-    public IReservation searchReservation(Integer ID) {
-        IReservation aux= new Reservation();
-        if(this.reservations.containsKey(ID)){
-            return reservations.get(ID);
-        }
-        return aux;
-    }
 
     public void showReservations(){
         if (reservations!=null){

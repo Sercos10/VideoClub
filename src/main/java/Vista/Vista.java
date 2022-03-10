@@ -1,9 +1,12 @@
 package Vista;
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Interfaces.IVista;
+import Modelo.Client;
+import Modelo.Reservation;
 
 public class Vista implements IVista{
 
@@ -70,6 +73,18 @@ public class Vista implements IVista{
 		System.out.println("2. Modificar fecha final");
 		System.out.println("3. Modificar estado de la reserva");
 		System.out.println("4. Volver");
+	}
+	
+	public void showClientList(HashMap <Integer, Client> c){
+		for(Integer key:c.keySet()) {
+			System.out.println("ID: " +key+ "Value: " +c.get(key));
+		}
+	}
+	
+	public void showReservations(HashMap <Integer, Reservation> c){
+		for(Integer key:c.keySet()) {
+			System.out.println("ID: " +key+ "Value: " +c.get(key));
+		}
 	}
 
 	public Integer leeEntero(String frase) {

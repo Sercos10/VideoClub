@@ -23,10 +23,14 @@ public class RepoClient implements Serializable, IReposClient{
 
 	private static RepoClient _instance;
 	
-	HashMap <Integer, Client> clientlist;
+	private HashMap <Integer, Client> clientlist;
 	
 	private RepoClient() {
 		clientlist= new HashMap <Integer, Client>();
+	}
+	
+	public HashMap<Integer, Client> getClientList(){
+		return clientlist;
 	}
 	
 	public static RepoClient getInstance() {
@@ -35,13 +39,7 @@ public class RepoClient implements Serializable, IReposClient{
 		}
 		return _instance;
 	}
-	
-	public void showClientList(){
-		for(Integer key:clientlist.keySet()) {
-			System.out.println("ID: " +key+ "Value: " +clientlist.get(key));
-		}
-	}
-	
+
 	public void modifyName(Integer ID, String Name) {
 		if(this.clientlist.containsKey(ID)) {
 			clientlist.get(ID).setName(Name);
