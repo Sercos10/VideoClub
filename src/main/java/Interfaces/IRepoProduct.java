@@ -1,11 +1,12 @@
 package Interfaces;
 
 import Enums.Category;
+import Modelo.Product;
 
 import java.util.HashMap;
 
 public interface IRepoProduct {
-	HashMap<Integer,IProduct> getProductList();
+	HashMap<Integer, Product> getProductList();
 	boolean addProduct (IProduct p);
 	boolean removeProduct (Integer id);
 	void modifyName(Integer ID, String name);
