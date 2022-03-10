@@ -18,8 +18,9 @@ public class Vista implements IVista{
 		System.out.println("2. Eliminar cliente");
 		System.out.println("3. Modificar cliente");
 		System.out.println("4. Mostrar clientes");
-		System.out.println("5. Reservas");
-		System.out.println("6. Volver");
+		System.out.println("5. Buscar cliente");
+		System.out.println("6. Reservas");
+		System.out.println("7. Volver");
 	}
 
 	public void showMenuProduct() {
@@ -27,8 +28,9 @@ public class Vista implements IVista{
 		System.out.println("2. Eliminar producto");
 		System.out.println("3. Modificar producto");
 		System.out.println("4. Mostrar producto");
-		System.out.println("5. Copias");
-		System.out.println("6. Volver");
+		System.out.println("5. Buscar producto");
+		System.out.println("6. Copias");
+		System.out.println("7. Volver");
 	}
 
 	public void showMenuCopia() {
@@ -42,7 +44,8 @@ public class Vista implements IVista{
 		System.out.println("2. Eliminar reserva");
 		System.out.println("3. Modificar reserva");
 		System.out.println("4. Mostrar reservas");
-		System.out.println("5. Volver");
+		System.out.println("5. Buscar reserva");
+		System.out.println("6. Volver");
 	}
 
 	public void showMenuModifyClient() {
@@ -155,4 +158,13 @@ public class Vista implements IVista{
 		return opcion;
 	}
 	
+	public Integer opcMenu7() {
+		boolean valid= false;
+		Integer opcion=0;
+		do {
+			opcion=leeEntero("Introduzca una opcion");
+			if(opcion<1 || opcion>7);
+		}while(valid);
+		return opcion;
+	}
 }
