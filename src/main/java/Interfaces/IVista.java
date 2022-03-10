@@ -2,6 +2,7 @@ package Interfaces;
 
 import java.util.HashMap;
 
+import Enums.Category;
 import Modelo.Client;
 import Modelo.Product;
 import Modelo.Reservation;
@@ -21,7 +22,7 @@ public interface IVista {
     Float leeFloat(String frase);
     String leeString(String frase);
     void print(String s);
-    void leeCategory();
+    Category leeCategory(String s);
     void leeStatus();
     Integer opcMenu3();
     Integer opcMenu6();

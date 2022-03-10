@@ -169,7 +169,7 @@ public class Controlador implements IController{
 				switchModifyProduct(vista.opcMenu5());
 				break;
 		case 4: Integer id9 = vista.leeEntero("Introduzca el ID del producto");
-				Category cate2 = 
+				Category cate2 = vista.leeCategory("Introduzca la nueva categoria");
 				RepoProducto.modifyCategory(id9, cate2);
 				vista.showMenuModifyProduct();
 				switchModifyProduct(vista.opcMenu5());

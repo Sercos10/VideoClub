@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Enums.Category;
 import Interfaces.IVista;
 import Modelo.Client;
 import Modelo.Product;
@@ -200,8 +201,10 @@ public class Vista implements IVista{
 		
 	}
 
-	public void leeCategory() {
+	public Category leeCategory(String s) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
+	
 }
