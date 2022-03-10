@@ -29,6 +29,10 @@ public class RepoReservation implements Serializable, IRespoReservation {
     private RepoReservation() {
         reservations= new HashMap <Integer, Reservation>();
     }
+    
+    public HashMap<Integer, Reservation> getReservations(){
+		return reservations;
+	}
 
     public static RepoReservation getInstance() {
         if (_instance==null) {
@@ -36,16 +40,16 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
         return _instance;
     }
-    public boolean addReservation(Integer ID,IClient client, IProduct product){
+    public boolean addReservation(Integer ID,IClient client, ICopia copia){
         boolean added=false;
-        if (client!=null&&product!=null){
+        if (client!=null&&copia!=null){
             if (reservations!=null&&!reservations.containsKey(ID)){
                 LocalDate created= LocalDate.now();
                 LocalDate expired = created.plusWeeks(7);
                 String expirado= ""+expired;
                 Status status= Status.RESERVADO;
                 String date= ""+created;
-                IReservation reservation= new Reservation(ID,date,expirado,status, client, product);
+                IReservation reservation= new Reservation(ID,date,expirado,status, client, copia);
                 reservations.put(ID, (Reservation) reservation);
                 added=true;
             }
@@ -83,15 +87,6 @@ public class RepoReservation implements Serializable, IRespoReservation {
     public IReservation searchReservation(Integer ID) {
 		return(this.reservations.get(ID));
 	}
-
-    public void showReservations(){
-        if (reservations!=null){
-            for (Map.Entry<Integer, Reservation> r : reservations.entrySet()) {
-                System.out.println("ID= " + r.getKey());
-                System.out.println("Reserva= " + r.getValue());
-            }
-        }
-    }
 
     public void saveFile(String url) {
         JAXBContext contexto;
