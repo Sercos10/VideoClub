@@ -8,6 +8,9 @@ public interface IVista {
     void showMenuModifyClient();
     void showMenuModifyProduct();
     void showMenuModifyReservation();
+    void showProductList();
+    void showClientList();
+    void showReservationList();
     Integer leeEntero(String frase);
     Float leeFloat(String frase);
     String leeString(String frase);
