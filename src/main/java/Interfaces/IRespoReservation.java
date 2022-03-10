@@ -3,10 +3,11 @@ package Interfaces;
 import Enums.Status;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public interface IRespoReservation {
-	void showReservations();
-	boolean addReservation(Integer ID, IClient cliente, IProduct product);
+	HashMap<Integer,IReservation> getReservations();
+	boolean addReservation(Integer ID, IClient cliente, ICopia copia);
 	boolean delReservation(Integer ID);
 	void modifyFechaCreacion(Integer ID, LocalDateTime date);
 	void modifyFechaFinal(Integer ID, LocalDateTime date);
