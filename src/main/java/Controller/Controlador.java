@@ -65,7 +65,7 @@ public class Controlador implements IController{
 		case 3: vista.showMenuModifyClient();
 				switchMenuModifyClient(vista.opcMenu6());
 				break;
-		case 4: RepoCliente.showClientList();
+		case 4: vista.showClientList(RepoCliente.getClientList());
 				vista.showMenuClient();
 				switchMenuCliente(vista.opcMenu7());
 				break;
@@ -97,7 +97,7 @@ public class Controlador implements IController{
 		case 3: vista.showMenuModifyProduct();
 				switchMenuProduct(vista.opcMenu5());
 				break;
-		case 4: RepoProducto.showProductList();
+		case 4: vista.showProductList(RepoProducto.getProductList());
 				vista.showMenuProduct();
 				switchMenuProduct(vista.opcMenu6());
 				break;
