@@ -1,12 +1,13 @@
 package Interfaces;
 
 import Enums.Status;
+import Modelo.Reservation;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public interface IRespoReservation {
-	HashMap<Integer,IReservation> getReservations();
+	HashMap<Integer, Reservation> getReservations();
 	boolean addReservation(Integer ID, IClient cliente, ICopia copia);
 	boolean delReservation(Integer ID);
 	void modifyFechaCreacion(Integer ID, LocalDateTime date);
