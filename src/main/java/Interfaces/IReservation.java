@@ -15,8 +15,8 @@ public interface IReservation {
     void setStatus(Status status);
     IClient getClient();
     void setClient(IClient client);
-    IProduct getProduct();
-    void setProduct(IProduct product);
+    ICopia getCopia();
+    void setCopia(ICopia copia);
     boolean equals(Object o);
     String toString();
 }

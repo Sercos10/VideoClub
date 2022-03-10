@@ -18,7 +18,7 @@ public class Client implements Serializable, IClient{
 	@XmlAttribute(name = "Identificacion", required = true)
 	private Integer ID;
 	
-	@XmlAttribute(name = "Identificacion")
+	@XmlAttribute(name = "Nombre")
 	private String Name;
 	
 	private String Phone;

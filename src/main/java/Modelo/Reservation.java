@@ -2,6 +2,7 @@ package Modelo;
 
 import Enums.Status;
 import Interfaces.IClient;
+import Interfaces.ICopia;
 import Interfaces.IProduct;
 import Interfaces.IReservation;
 
@@ -17,7 +18,7 @@ public class Reservation implements Serializable, IReservation {
     private LocalDateTime FinalDate;
     private Status status;
     private IClient client;
-    private IProduct product;
+    private ICopia copia;
 
     public Reservation(){
         this.ID=-1;
@@ -25,16 +26,16 @@ public class Reservation implements Serializable, IReservation {
         this.FinalDate=null;
         this.status=null;
         this.client=null;
-        this.product=null;
+        this.copia=null;
     }
 
-    public Reservation(Integer ID, LocalDateTime Date, LocalDateTime FinalDate, Status status,IClient client, IProduct product){
+    public Reservation(Integer ID, LocalDateTime Date, LocalDateTime FinalDate, Status status,IClient client, ICopia copia){
         this.ID=ID;
         this.DateReser=Date;
         this.FinalDate=FinalDate;
         this.status=status;
         this.client=client;
-        this.product=product;
+        this.copia=copia;
     }
    
     public Integer getID() {
@@ -76,12 +77,12 @@ public class Reservation implements Serializable, IReservation {
         this.client = client;
     }
 
-    public IProduct getProduct() {
-        return product;
+    public ICopia getCopia() {
+        return copia;
     }
 
-    public void setProduct(IProduct product) {
-        this.product = product;
+    public void setCopia(ICopia copia) {
+        this.copia = copia;
     }
 
     public boolean equals(Object obj){
@@ -109,7 +110,7 @@ public class Reservation implements Serializable, IReservation {
                 ", FinalDate='" + FinalDate + '\'' +
                 ", status=" + status +
                 ", client=" + client +
-                ", product=" + product +
+                ", copia=" + copia +
                 '}';
     }
 }

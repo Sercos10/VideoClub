@@ -96,4 +96,11 @@ public class Product implements IProduct, Serializable {
 			return false;
 		return true;
 	}
+
+	public Integer getNCopias() {
+		return null;
+	}
+
+	public void setNCopias(Integer ncopias) {		
+	}
 }

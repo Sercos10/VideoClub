@@ -1,7 +1,11 @@
 package Interfaces;
 
+import Modelo.Client;
+
+import java.util.HashMap;
+
 public interface IReposClient {
-	void showClientList();
+	HashMap<Integer, Client> getClientList();
 	void modifyName(Integer ID, String name);
 	void modifyPhone(Integer ID, String phone);
 	void modifyTime(Integer ID, String time);
