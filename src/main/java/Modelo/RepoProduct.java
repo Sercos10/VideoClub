@@ -26,10 +26,8 @@ public class RepoProduct implements IRepoProduct {
 		productList = new HashMap<Integer, Product>();
 	}
 
-	public void showProductList() {
-		for(Integer key:productList.keySet()) {
-			System.out.println("ID: " +key+ "Value: " +productList.get(key));
-		}
+	public HashMap<Integer,Product> getProductList() {
+		return productList;
 	}
 
 	public static RepoProduct getInstance() {
@@ -50,16 +48,15 @@ public class RepoProduct implements IRepoProduct {
 		return added;
 	}
 
-	public boolean removeProduct(IProduct p) {
+	public boolean removeProduct(Integer id) {
 		boolean removed = false;
-		if (p != null) {
-			if (productList.containsKey(p.getID())) {
-				productList.remove(p.getID());
-				removed = true;
+		if(productList.containsKey(id)) {
+			productList.remove(id);
+			removed=true;
 			}
-		}
 		return removed;
-	}
+		}
+		
 
 	public void modifyName(Integer ID, String name) {
 		if (productList.containsKey(ID)) {

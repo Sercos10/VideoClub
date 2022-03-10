@@ -94,9 +94,6 @@ public class RepoClient implements Serializable, IReposClient{
 		}
 		return removed; 
 	}
-	public IClient searchClient(Integer ID) {
-		return this.clientlist.get(ID);
-	}
 
 	public void saveFile(String url) {
 		JAXBContext contexto; 
