@@ -9,7 +9,7 @@ public interface IReposClient {
 	void modifyAge(Integer ID, Integer age);
 	IClient searchClient(Integer ID);
 	boolean addClient(IClient c);
-	boolean removeClient(IClient c);
+	boolean removeClient(Integer ID);
     void saveFile(String url);
     void loadFile(String url);
     
