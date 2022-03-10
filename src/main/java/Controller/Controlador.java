@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.Category;
 import Interfaces.IClient;
 import Interfaces.IController;
 import Interfaces.ICopia;
@@ -12,6 +13,8 @@ import Interfaces.IRespoReservation;
 import Interfaces.IVista;
 import Vista.Utils;
 import Vista.Vista;
+import Modelo.Client;
+import Modelo.Product;
 import Modelo.RepoClient;
 import Modelo.RepoProduct;
 import Modelo.RepoReservation;
@@ -22,44 +25,84 @@ public class Controlador implements IController{
 	IVista vista = new Vista();
 	Utils u = new Utils();
 	IReposClient RepoCliente = RepoClient.getInstance();
-	IClient client;
+	IClient client = new Client();
 	IProduct product;
 	IRepoProduct RepoProducto = RepoProduct.getInstance();
 	IReservation reserva;
 	IRespoReservation RepoReserva = RepoReservation.getInstance();
 	
 	
-	public void switchMain(int op) {
+	private void switchMain(int op) {
 		RepoCliente.loadFile(null);
 		RepoProducto.loadFile(null);
 		RepoReserva.loadFile(null);
 		switch (op) {
 		case 1: vista.showMenuClient();
+				switchMenuCliente(vista.opcMenu7());
 				break;
 		case 2: vista.showMenuProduct();
+				switchMenuProduct(vista.opcMenu6());
 				break;
 		case 3: vista.print("Gracias por utilizar nuestro software");
+				RepoCliente.saveFile(null);
+				RepoProducto.saveFile(null);
+				RepoReserva.saveFile(null);
 				break;
 		}
 	}
 	
-	public void switchMenuCliente(int op) {
+	private void switchMenuCliente(int op) {
 		switch (op) {
 		case 1: RepoCliente.addClient(u.readClient());
 				vista.showMenuClient();
-				switchMenuCliente(vista.opcMenu6());
+				switchMenuCliente(vista.opcMenu7());
 				break;
-		case 2: 
+		case 2: Integer id6 = vista.leeEntero("Introduce el ID del cliente");
+				RepoCliente.removeClient(id6);
 				vista.showMenuClient();
-				switchMenuCliente(vista.opcMenu6());
+				switchMenuCliente(vista.opcMenu7());
 				break;
 		case 3: vista.showMenuModifyClient();
+				switchMenuModifyClient(vista.opcMenu6());
 				break;
 		case 4: RepoCliente.showClientList();
 				vista.showMenuClient();
-				switchMenuCliente(vista.opcMenu6());
+				switchMenuCliente(vista.opcMenu7());
 				break;
-		case 5: vista.showMenuReservation();
+		case 5: Integer id = vista.leeEntero("Introduce el ID del cliente");
+				RepoCliente.searchClient(id);
+				vista.showMenuClient();
+				switchMenuCliente(vista.opcMenu7());
+				break;
+		case 6: vista.showMenuReservation();
+				vista.showMenuReservation();
+				switchMenuReservation(vista.opcMenu6());
+				break;
+		case 7: vista.showMainMenu();
+				switchMain(vista.opcMenu3());
+				break;
+		}
+	}
+	
+	private void switchMenuProduct(int op) {
+		switch (op) {
+		case 1: RepoProducto.addProduct(u.readProduct());
+				vista.showMenuProduct();
+				switchMenuProduct(vista.opcMenu6());
+				break;
+		case 2: 
+				vista.showMenuProduct();
+				switchMenuProduct(vista.opcMenu6());
+				break;
+		case 3: vista.showMenuModifyProduct();
+				switchMenuProduct(vista.opcMenu5());
+				break;
+		case 4: RepoProducto.showProductList();
+				vista.showMenuProduct();
+				switchMenuProduct(vista.opcMenu6());
+				break;
+		case 5: Integer id2 = vista.leeEntero("Introduce el ID del producto");
+				RepoProducto.searchProduct(id2);
 				break;
 		case 6: vista.showMainMenu();
 				switchMain(vista.opcMenu3());
@@ -67,29 +110,7 @@ public class Controlador implements IController{
 		}
 	}
 	
-	public void switchMenuProduct(int op) {
-		switch (op) {
-		case 1: RepoProducto.addProduct(u.readProduct());
-				vista.showMenuProduct();
-				switchMenuProduct(vista.opcMenu5());
-				break;
-		case 2: 
-				vista.showMenuProduct();
-				switchMenuProduct(vista.opcMenu5());
-				break;
-		case 3: vista.showMenuModifyProduct();
-				break;
-		case 4: RepoProducto.showProductList();
-				vista.showMenuProduct();
-				switchMenuProduct(vista.opcMenu5());
-				break;
-		case 5: vista.showMainMenu();
-				switchMain(vista.opcMenu3());
-				break;
-		}
-	}
-	
-	public void switchMenuModifyClient(int op) {
+	private void switchMenuModifyClient(int op) {
 		switch (op) {
 		case 1: Integer id = vista.leeEntero("Introduzca el ID del cliente");
 				String name=vista.leeString("Introduzca el nuevo nombre");
@@ -127,18 +148,71 @@ public class Controlador implements IController{
 		}
 	}
 	
-	public void switchModifyProduct(int op) {
+	private void switchModifyProduct(int op) {
+		switch (op) {
+		case 1: Integer id6 = vista.leeEntero("Introduzca el ID del producto");
+				String name2 = vista.leeString("Introduzca el nombre del producto");
+				RepoProducto.modifyName(id6, name2);
+				vista.showMenuModifyProduct();
+				switchModifyProduct(vista.opcMenu5());
+				break;
+		case 2: Integer id7 = vista.leeEntero("Introduzca el ID del producto");
+				String desc2 = vista.leeString("Introduzca la descripcion del producto");
+				RepoProducto.modifyDesc(id7, desc2);
+				vista.showMenuModifyProduct();
+				switchModifyProduct(vista.opcMenu5());
+				break;
+		case 3: Integer id8 = vista.leeEntero("Introduzca el ID del producto");
+				Integer precio2 = vista.leeEntero("Introduzca el precio del producto");
+				RepoProducto.modifyPrize(id8, precio2);
+				vista.showMenuModifyProduct();
+				switchModifyProduct(vista.opcMenu5());
+				break;
+		case 4: Integer id9 = vista.leeEntero("Introduzca el ID del producto");
+				Category cate2 = 
+				RepoProducto.modifyCategory(id9, cate2);
+				vista.showMenuModifyProduct();
+				switchModifyProduct(vista.opcMenu5());
+				break;
+		case 5: vista.showMenuProduct();
+				switchMenuProduct(vista.opcMenu5());
+				break;
+		}
+	}
+	
+	private void switchMenuReservation(int op) {
+		switch (op) {
+		case 1: 
+				vista.showMenuReservation();
+				switchMenuReservation(vista.opcMenu6());
+				break;
+		case 2:
+				break;
+		case 3: vista.showMenuModifyReservation();
+				switchMenuModifyReservation(vista.opcMenu4());
+				break;
+		case 4:
+				break;
+		case 5:
+				break;
+		case 6: vista.showMenuClient();
+				switchMenuCliente(vista.opcMenu7());
+				break;
+		}
+	}
+	
+	private void switchMenuModifyReservation(int op) {
 		switch (op) {
 		case 1:
+				vista.showMenuModifyReservation();
+				switchMenuModifyReservation(vista.opcMenu4());
 				break;
 		case 2:
 				break;
 		case 3:
 				break;
-		case 4:
-				break;
-		case 5: vista.showMenuProduct();
-				switchMenuProduct(vista.opcMenu5());
+		case 4: vista.showMenuReservation();
+				switchMenuReservation(vista.opcMenu6());
 				break;
 		}
 	}
@@ -147,6 +221,8 @@ public class Controlador implements IController{
 	
 	public void run() {
 		vista.showMainMenu();
+		Integer opc2 = vista.leeEntero("Introduzca la opcion");
+		switchMain(opc2);
 		
 	}
 	
