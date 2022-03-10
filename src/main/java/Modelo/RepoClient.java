@@ -25,7 +25,7 @@ public class RepoClient implements Serializable, IReposClient{
 	
 	HashMap <Integer, Client> clientlist;
 	
-	public RepoClient() {
+	private RepoClient() {
 		clientlist= new HashMap <Integer, Client>();
 	}
 	
@@ -71,6 +71,10 @@ public class RepoClient implements Serializable, IReposClient{
 			clientlist.get(ID).setAge(Age);
 		}
 	}
+	
+	public IClient searchClient(Integer ID) {
+		return(this.clientlist.get(ID));
+	}
 
 	public boolean addClient(IClient c) {
 		Client aux= (Client) c;
@@ -82,11 +86,10 @@ public class RepoClient implements Serializable, IReposClient{
 		return added;
 	}
 	
-	public boolean removeClient(IClient c) {
-		Client aux= (Client) c;
+	public boolean removeClient(Integer ID) {
 		boolean removed=false;
-		if(this.clientlist.containsKey(aux.getID())) {
-			this.clientlist.remove(aux.getID());
+		if(this.clientlist.containsKey(ID)) {
+			this.clientlist.remove(ID);
 			removed=true;
 		}
 		return removed; 

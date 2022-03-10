@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,12 +41,11 @@ public class RepoReservation implements Serializable, IRespoReservation {
         boolean added=false;
         if (client!=null&&product!=null){
             if (reservations!=null&&!reservations.containsKey(ID)){
-                LocalDate created= LocalDate.now();
-                LocalDate expired = created.plusWeeks(7);
-                String expirado= ""+expired;
+                LocalDateTime created= LocalDateTime.now();
+                LocalDateTime expired = created.plusWeeks(7);
+
                 Status status= Status.RESERVADO;
-                String date= ""+created;
-                IReservation reservation= new Reservation(ID,date,expirado,status, client, product);
+                IReservation reservation= new Reservation(ID,created,expired,status, client, product);
                 reservations.put(ID, (Reservation) reservation);
                 added=true;
             }
@@ -62,23 +62,35 @@ public class RepoReservation implements Serializable, IRespoReservation {
         return deleted;
     }
 
-    public void modifyFechaCreacion(Integer ID, String date) {
+    public void modifyFechaCreacion(Integer ID, LocalDateTime date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setDateReser(date);
         }
     }
 
-    public void modifyFechaFinal(Integer ID, String date) {
+    public void modifyFechaFinal(Integer ID, LocalDateTime date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setFinalDate(date);
         }
     }
 
-    @Override
     public void modifyStatus(Integer ID, Status status) {
         if (reservations != null && reservations.containsKey(ID)) {
             reservations.get(ID).setStatus(status);
         }
+    }
+    
+    public IReservation searchReservation(Integer ID) {
+		return(this.reservations.get(ID));
+	}
+
+    @Override
+    public IReservation searchReservation(Integer ID) {
+        IReservation aux= new Reservation();
+        if(this.reservations.containsKey(ID)){
+            return reservations.get(ID);
+        }
+        return aux;
     }
 
     public void showReservations(){
