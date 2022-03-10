@@ -1,5 +1,11 @@
 package Interfaces;
 
+import java.util.HashMap;
+
+import Modelo.Client;
+import Modelo.Product;
+import Modelo.Reservation;
+
 public interface IVista {
     void showMainMenu();
     void showMenuClient();
@@ -8,9 +14,9 @@ public interface IVista {
     void showMenuModifyClient();
     void showMenuModifyProduct();
     void showMenuModifyReservation();
-    void showProductList();
-    void showClientList();
-    void showReservationList();
+    void showProductList(HashMap<Integer,Product> p);
+    void showClientList(HashMap<Integer,Client> clie);
+    void showReservationList(HashMap<Integer, Reservation> reserva);
     Integer leeEntero(String frase);
     Float leeFloat(String frase);
     String leeString(String frase);

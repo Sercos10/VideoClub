@@ -44,9 +44,9 @@ public class Controlador implements IController{
 				switchMenuProduct(vista.opcMenu6());
 				break;
 		case 3: vista.print("Gracias por utilizar nuestro software");
-				RepoCliente.saveFile(null);
-				RepoProducto.saveFile(null);
-				RepoReserva.saveFile(null);
+				RepoCliente.saveFile("cliente.xml");
+				RepoProducto.saveFile("producto.xml");
+				RepoReserva.saveFile("reserva.xml");
 				break;
 		}
 	}

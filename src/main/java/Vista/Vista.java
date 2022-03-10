@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import Interfaces.IVista;
 import Modelo.Client;
+import Modelo.Product;
 import Modelo.Reservation;
 
 public class Vista implements IVista{
@@ -181,5 +182,26 @@ public class Vista implements IVista{
 			if(opcion<1 || opcion>7);
 		}while(valid);
 		return opcion;
+	}
+
+
+	public void leeStatus() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showProductList(HashMap<Integer, Product> p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showReservationList(HashMap<Integer, Reservation> reserva) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void leeCategory() {
+		// TODO Auto-generated method stub
+		
 	}
 }
