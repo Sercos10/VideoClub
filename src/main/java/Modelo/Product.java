@@ -21,7 +21,7 @@ public class Product implements IProduct, Serializable {
 	@XmlAttribute(name = "identificador")
 	private Integer id;
 	private Category category;
-	private Integer num_cop;
+	private Integer NCopias;
 	
 
 	public String getName() {
@@ -74,8 +74,8 @@ public class Product implements IProduct, Serializable {
 	}
 	
 	public String toString() {
-		return "Product [Name=" + Name + ", price=" + price + ", description=" + description + ", id=" + id
-				+ ", category=" + category + ", num_cop=" + num_cop + "]";
+		return "Product Name=" + Name + "Price=" + price + "\n description=" + description + "\n id=" + id
+				+ "\n category=" + category + "\n num_cop=" + NCopias;
 	}
 
 	public Product() {
@@ -98,9 +98,10 @@ public class Product implements IProduct, Serializable {
 	}
 
 	public Integer getNCopias() {
-		return null;
+		return NCopias;
 	}
 
-	public void setNCopias(Integer ncopias) {		
+	public void setNCopias(Integer ncopias) {
+		this.NCopias=ncopias;
 	}
 }

@@ -1,10 +1,10 @@
 package Modelo;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBContextFactory;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import Enums.Category;
+import Interfaces.ICopia;
 import Interfaces.IProduct;
 import Interfaces.IRepoProduct;
 
@@ -110,8 +111,6 @@ public class RepoProduct implements IRepoProduct {
 	}
 
 	public IProduct searchProduct(Integer ID) {
-		
-		return null;
+		return productList.get(ID);
 	}
-
 }
