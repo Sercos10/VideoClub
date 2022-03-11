@@ -34,14 +34,7 @@ public class Vista implements IVista{
 		System.out.println("3. Modificar producto");
 		System.out.println("4. Mostrar producto");
 		System.out.println("5. Buscar producto");
-		System.out.println("6. Copias");
-		System.out.println("7. Volver");
-	}
-
-	public void showMenuCopia() {
-		System.out.println("1. Anadir copia");
-		System.out.println("2. Eliminar copia");
-		System.out.println("3. Volver");
+		System.out.println("6. Volver");
 	}
 
 	public void showMenuReservation() {
