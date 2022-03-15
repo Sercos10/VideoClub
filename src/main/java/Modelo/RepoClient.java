@@ -2,6 +2,7 @@ package Modelo;
 
 import java.io.File;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import Interfaces.IClient;
@@ -52,7 +53,7 @@ public class RepoClient implements Serializable, IReposClient{
 		}
 	}
 	
-	public void modifyTime(Integer ID, String Time) {
+	public void modifyTime(Integer ID, LocalDateTime Time) {
 		if(this.clientlist.containsKey(ID)) {
 			clientlist.get(ID).setTime(Time);
 		}

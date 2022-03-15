@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,7 +24,7 @@ public class Client implements Serializable, IClient{
 	
 	private String Phone;
 	
-	private String Time;
+	private LocalDateTime Time;
 	
 	private String Address;
 	
@@ -33,12 +34,12 @@ public class Client implements Serializable, IClient{
 		this.ID=-1;
 		this.Name="";
 		this.Phone="";
-		this.Time="";
+		this.Time=null;
 		this.Address="";
 		this.Age=-1;
 	}
 	
-	public Client(Integer ID, String Name, String Phone, String Time, String Address, Integer Age) {
+	public Client(Integer ID, String Name, String Phone, LocalDateTime Time, String Address, Integer Age) {
 		this.ID=ID;
 		this.Name=Name;
 		this.Phone=Phone;
@@ -71,11 +72,11 @@ public class Client implements Serializable, IClient{
 		Phone = phone;
 	}
 
-	public String getTime() {
+	public LocalDateTime getTime() {
 		return Time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(LocalDateTime time) {
 		Time = time;
 	}
 	
