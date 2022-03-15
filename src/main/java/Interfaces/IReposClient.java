@@ -2,13 +2,14 @@ package Interfaces;
 
 import Modelo.Client;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public interface IReposClient {
 	HashMap<Integer, Client> getClientList();
 	void modifyName(Integer ID, String name);
 	void modifyPhone(Integer ID, String phone);
-	void modifyTime(Integer ID, String time);
+	void modifyTime(Integer ID, LocalDateTime time);
 	void modifyAddress(Integer ID, String address);
 	void modifyAge(Integer ID, Integer age);
 	IClient searchClient(Integer ID);
