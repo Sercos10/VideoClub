@@ -3,6 +3,7 @@ package Interfaces;
 import java.util.HashMap;
 
 import Enums.Category;
+import Enums.Status;
 import Modelo.Client;
 import Modelo.Product;
 import Modelo.Reservation;
@@ -23,6 +24,7 @@ public interface IVista {
     String leeString(String frase);
     void print(String s);
     Category leeCategory(String s);
+    Status leeStatus(String s);
     Integer opcMenu3();
     Integer opcMenu6();
     Integer opcMenu7();

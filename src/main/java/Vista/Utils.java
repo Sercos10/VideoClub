@@ -1,17 +1,25 @@
 package Vista;
 
+import java.time.LocalDateTime;
+
 import Enums.Category;
+import Enums.Status;
+import Interfaces.IRespoReservation;
+import Interfaces.IVista;
 import Modelo.Client;
 import Modelo.Product;
 import Modelo.RepoCopia;
+import Modelo.RepoReservation;
+import Modelo.Reservation;
 import Modelo.Copia;
 
 public class Utils {
 	Copia c;
 	RepoCopia rc;
+	RepoReservation Rr= RepoReservation.getInstance();
 	
 	
-	public Product readProduct(Vista v) {
+	public Product readProduct(IVista v) {
 		String name,desc;
 		Integer id,ncopias;
 		Float price;
@@ -26,7 +34,7 @@ public class Utils {
 		copyGenerator(p);
 		return p;
 	}
-	public Client readClient(Vista v) {
+	public Client readClient(IVista v) {
 		String name,phone,time,address;
 		Integer id,age;
 		name=v.leeString("Introduce el nombre del Cliente");
@@ -38,6 +46,14 @@ public class Utils {
 		
 		Client c = new Client(id,name,phone,time,address,age);
 		return c;
+	}
+	public Reservation readReservation(IVista v,Client c,Copia copia) {
+		LocalDateTime Hora =LocalDateTime.now();
+		LocalDateTime endr = Hora.plusWeeks(6);
+		Integer id = v.leeEntero("Introduzca ID de la reserva");
+		Status estado = v.leeStatus("Introzca el estado de la reserva");
+		Reservation Reserva = new Reservation(id,Hora,endr,estado,c,copia);
+		Rr.addReservation(Reserva);
 	}
 	public Copia copyGenerator(Product p){
 		int cont=0;
