@@ -23,10 +23,10 @@ public interface IVista {
     String leeString(String frase);
     void print(String s);
     Category leeCategory(String s);
-    void leeStatus();
     Integer opcMenu3();
     Integer opcMenu6();
     Integer opcMenu7();
     Integer opcMenu5();
     Integer opcMenu4();
+    void showClient(Object O);
 }

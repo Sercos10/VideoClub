@@ -13,9 +13,22 @@ import Modelo.Reservation;
 public class Vista implements IVista{
 
 	public void showMainMenu() {
-		System.out.println("1. Clientes");
-		System.out.println("2. Productos");
-		System.out.println("3. Salir");
+		System.out.println("------------------------------------------------------------------------------------------");
+		System.out.println("|  _         _    _    ___     ____    _______    _____    _        _     _    ____      |");                          
+		System.out.println("| |*|       |*|  |*|  |***|   |****|  |*******|  |*****|  |*|      |*|   |*|  |****|     |");
+		System.out.println("|  |*|     |*|   |*|  |*  *|  |*|     |*|   |*|  |*|      |*|      |*|   |*|  |*   *|    |");
+		System.out.println("|   |*|   |*|    |*|  |*   *| |****|  |*|   |*|  |*|      |*|      |*|   |*|  |***|      |");
+		System.out.println("|    |*| |*|     |*|  |*  *|  |*|     |*|   |*|  |*|      |*|___   |*|___|*|  |*   *|    |");
+		System.out.println("|      |**|      |*|  |***|   |****|  |*******|  |*****|  |*****|  |****** |  |****|     |");
+		System.out.println("|                                                                                        |");
+		System.out.println("|----------------------------------------------------------------------------------------|");
+	    System.out.println("                                                                                          ");
+	    System.out.println("                                                                                          ");
+	    System.out.println("------------------------------------------------------------------------------------------");
+		System.out.println("|                                 1. Clientes                                            |");
+		System.out.println("|                                 2. Productos                                           |");
+		System.out.println("|                                 3. Salir                                               |");
+		System.out.println("-----------------------------------------------------------------------------------------");
 	}
 
 	public void showMenuClient() {
@@ -68,6 +81,13 @@ public class Vista implements IVista{
 		System.out.println("2. Modificar fecha final");
 		System.out.println("3. Modificar estado de la reserva");
 		System.out.println("4. Volver");
+	}
+	
+	public void showCategoryMenu() {
+		System.out.println("1. Peliculas");
+		System.out.println("2. Juegos");
+		System.out.println("3. Series");
+
 	}
 	
 	public void showClientList(HashMap <Integer, Client> c){
@@ -177,26 +197,38 @@ public class Vista implements IVista{
 		}while(valid);
 		return opcion;
 	}
-
-
-	public void leeStatus() {
-		// TODO Auto-generated method stub
-		
+	
+	public void showClient(Object o) {
+		System.out.println(o);
 	}
 
 	public void showProductList(HashMap<Integer, Product> p) {
-		// TODO Auto-generated method stub
+		for (Integer key : p.keySet()) {
+			System.out.println(p.get(key));
+		}
 		
 	}
 
 	public void showReservationList(HashMap<Integer, Reservation> reserva) {
-		// TODO Auto-generated method stub
-		
+		for (Integer key : reserva.keySet()) {
+			System.out.println(reserva.get(key));
+		}
 	}
 
 	public Category leeCategory(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		this.print(s);
+		showCategoryMenu();
+		int opc=opcMenu3();
+		switch(opc) {
+		case 1:
+			return Category.PELICULAS;
+		case 2:
+			return Category.JUEGOS;
+		case 3:
+			return Category.SERIES;
+		default:
+			return Category.PELICULAS;
+		}
 	}
 
 	

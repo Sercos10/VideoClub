@@ -69,7 +69,7 @@ public class Controlador implements IController{
 				switchMenuCliente(vista.opcMenu7());
 				break;
 		case 5: Integer id = vista.leeEntero("Introduce el ID del cliente");
-				vista.print(RepoCliente.searchClient(id));
+				vista.showClient(RepoCliente.searchClient(id));
 				vista.showMenuClient();
 				switchMenuCliente(vista.opcMenu7());
 				break;
