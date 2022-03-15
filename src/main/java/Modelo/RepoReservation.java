@@ -41,17 +41,12 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
         return _instance;
     }
-    public boolean addReservation(Integer ID,IClient client, ICopia copia){
+    public boolean addReservation(IReservation r) {
+        Reservation aux= (Reservation) r;
         boolean added=false;
-        if (client!=null&&copia!=null){
-            if (reservations!=null&&!reservations.containsKey(ID)){
-                LocalDateTime created= LocalDateTime.now();
-                LocalDateTime expired = created.plusWeeks(7);
-                Status status= Status.RESERVADO;
-                IReservation reservation= new Reservation(ID,created,expired,status, client, copia);
-                reservations.put(ID, (Reservation) reservation);
-                added=true;
-            }
+        if(!this.reservations.containsKey(aux.getID())) {
+            this.reservations.put(aux.getID(), aux);
+            added=true;
         }
         return added;
     }
@@ -63,12 +58,6 @@ public class RepoReservation implements Serializable, IRespoReservation {
             deleted=true;
         }
         return deleted;
-    }
-
-    public void modifyFechaCreacion(Integer ID, LocalDateTime date) {
-        if (reservations!=null&&reservations.containsKey(ID)){
-            reservations.get(ID).setDateReser(date);
-        }
     }
 
     public void modifyFechaFinal(Integer ID, LocalDateTime date) {
