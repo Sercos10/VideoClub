@@ -13,8 +13,8 @@ public interface IProduct {
     void setPrice(Float Price);
     void setDescription(String Description);
     void setID(Integer ID);
+    void setCategory(Category category);
     void setNCopias(Integer ncopias);
-    void setCategory(Category categoria);
     boolean equals(Object o);
     String toString();
 }
