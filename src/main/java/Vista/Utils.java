@@ -1,22 +1,29 @@
 package Vista;
 
+import Enums.Category;
 import Modelo.Client;
 import Modelo.Product;
+import Modelo.RepoCopia;
 import Modelo.Copia;
 
 public class Utils {
 	Copia c;
+	RepoCopia rc;
 	
 	
 	public Product readProduct(Vista v) {
 		String name,desc;
-		Integer id;
+		Integer id,ncopias;
 		Float price;
+		Category categoria;
 		name=v.leeString("Introduce el nombre del producto");
 		desc=v.leeString("Introduce la descripcion del producto");
 		id=v.leeEntero("Introduce la id del Producto");
 		price=v.leeFloat("Introduce el precio del producto");
-		Product p= new Product(name,price,desc,id);
+		ncopias=v.leeEntero("Introduzca el numero de copias");
+		categoria=v.leeCategory("Seleccione que categoria");
+		Product p= new Product(name,price,desc,id,ncopias,categoria);
+		copyGenerator(p);
 		return p;
 	}
 	public Client readClient(Vista v) {
@@ -36,10 +43,10 @@ public class Utils {
 		int cont=0;
 		do {
 			Integer idcopy=c.idGenerator();
-			Copia c = new Copia(p.getName(),p.getPrice(),p.getDescription(),p.getID(),p.getNum_cop(),p.getCategory(),idcopy);
+			Copia c = new Copia(p.getName(),p.getPrice(),p.getDescription(),p.getID(),p.getNCopias(),p.getCategory(),idcopy);
 			rc.addCopy(c,p);
 			cont++;
-		}while(cont<p.getNum_cop());
+		}while(cont<p.getNCopias());
 		return c;
 	}
 }

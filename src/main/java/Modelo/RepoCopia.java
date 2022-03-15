@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import Interfaces.IRepoCopia;
@@ -8,6 +7,7 @@ import Vista.Utils;
 
 public class RepoCopia implements IRepoCopia{
 	private HashMap<Integer,Copia> ListaCopias;
+	Utils u;
 	public RepoCopia() {
 		ListaCopias = new HashMap<Integer,Copia>();
 	}
