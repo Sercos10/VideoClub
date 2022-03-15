@@ -1,6 +1,7 @@
 package Vista;
 
 import Enums.Category;
+import Interfaces.IVista;
 import Modelo.Client;
 import Modelo.Product;
 import Modelo.RepoCopia;
@@ -11,7 +12,7 @@ public class Utils {
 	RepoCopia rc;
 	
 	
-	public Product readProduct(Vista v) {
+	public Product readProduct(IVista v) {
 		String name,desc;
 		Integer id,ncopias;
 		Float price;
@@ -26,7 +27,7 @@ public class Utils {
 		copyGenerator(p);
 		return p;
 	}
-	public Client readClient(Vista v) {
+	public Client readClient(IVista v) {
 		String name,phone,time,address;
 		Integer id,age;
 		name=v.leeString("Introduce el nombre del Cliente");
