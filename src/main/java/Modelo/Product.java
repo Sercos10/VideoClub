@@ -65,14 +65,17 @@ public class Product implements IProduct, Serializable {
 		this.category = category;
 	}
 
-	public Product(String name, Float price, String description, Integer id) {
-		super();
+	
+	
+	public Product(String name, Float price, String description, Integer id,Integer nCopias, Category category) {
 		Name = name;
 		this.price = price;
 		this.description = description;
 		this.id = id;
+		this.category = category;
+		NCopias = nCopias;
 	}
-	
+
 	public String toString() {
 		return "Product Name=" + Name + "Price=" + price + "\n description=" + description + "\n id=" + id
 				+ "\n category=" + category + "\n num_cop=" + NCopias;

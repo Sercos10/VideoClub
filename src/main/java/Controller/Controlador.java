@@ -19,9 +19,7 @@ public class Controlador implements IController{
 	IRespoReservation RepoReserva;
 	
 	
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	public void run() {		
 	}
 	
 	

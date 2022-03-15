@@ -1,15 +1,20 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import Interfaces.IRepoCopia;
+import Vista.Utils;
 
 public class RepoCopia implements IRepoCopia{
-	private ArrayList<Copia> Copias;
-
+	private HashMap<Integer,Copia> ListaCopias;
 	public RepoCopia() {
-		Copias = new ArrayList<Copia>();
+		ListaCopias = new HashMap<Integer,Copia>();
 	}
-	public void addCopy(Copia c) {
-		Copias.add(c);
+	public void addCopy(Copia c,Product p) {
+		if(ListaCopias.containsKey(c.getId_copia())) {
+			u.copyGenerator(p);
+		}
+		ListaCopias.put(c.getID(),c);
 	}
 }
