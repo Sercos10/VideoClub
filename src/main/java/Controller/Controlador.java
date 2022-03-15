@@ -237,13 +237,10 @@ public class Controlador implements IController{
 		}
 	}
 	
-	
-	
 	public void run() {
 		vista.showMainMenu();
 		Integer opc2 = vista.leeEntero("Introduzca la opcion");
 		switchMain(opc2);
-		
 	}
 	
 	
