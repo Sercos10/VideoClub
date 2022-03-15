@@ -90,7 +90,8 @@ public class Controlador implements IController{
 				vista.showMenuProduct();
 				switchMenuProduct(vista.opcMenu6());
 				break;
-		case 2: 
+		case 2: Integer id7 = vista.leeEntero("Introduce el ID del cliente");
+				RepoProducto.removeProduct(id7);
 				RepoProducto.saveFile("producto.xml");
 				vista.showMenuProduct();
 				switchMenuProduct(vista.opcMenu6());
