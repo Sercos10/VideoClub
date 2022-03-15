@@ -50,7 +50,7 @@ public class Controlador implements IController{
 	
 	private void switchMenuCliente(int op) {
 		switch (op) {
-		case 1: RepoCliente.addClient(u.readClient());
+		case 1: RepoCliente.addClient(u.readClient(vista));
 				RepoCliente.saveFile("cliente.xml");	
 				vista.showMenuClient();
 				switchMenuCliente(vista.opcMenu7());
@@ -85,7 +85,7 @@ public class Controlador implements IController{
 	
 	private void switchMenuProduct(int op) {
 		switch (op) {
-		case 1: RepoProducto.addProduct(u.readProduct());
+		case 1: RepoProducto.addProduct(u.readProduct(vista));
 				RepoProducto.saveFile("producto.xml");
 				vista.showMenuProduct();
 				switchMenuProduct(vista.opcMenu6());
