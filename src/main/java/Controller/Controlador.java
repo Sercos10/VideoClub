@@ -1,5 +1,7 @@
 package Controller;
 
+import java.time.LocalDateTime;
+
 import Enums.Category;
 import Interfaces.IClient;
 import Interfaces.IController;
@@ -129,7 +131,7 @@ public class Controlador implements IController{
 				switchMenuModifyClient(vista.opcMenu6());
 				break;
 		case 3: Integer id3 = vista.leeEntero("Introduzca el ID del cliente");
-				String fecha=vista.leeString("Introduzca la fecha de alta");
+				LocalDateTime fecha = LocalDateTime.now();
 				RepoCliente.modifyTime(id3, fecha);
 				RepoCliente.saveFile("cliente.xml");
 				vista.showMenuModifyClient();
@@ -202,7 +204,7 @@ public class Controlador implements IController{
 				RepoReserva.saveFile("reserva.xml");
 				break;
 		case 3: vista.showMenuModifyReservation();
-				switchMenuModifyReservation(vista.opcMenu4());
+				switchMenuModifyReservation(vista.opcMenu3());
 				break;
 		case 4:
 				break;
@@ -219,19 +221,14 @@ public class Controlador implements IController{
 		case 1:
 				RepoReserva.saveFile("reserva.xml");
 				vista.showMenuModifyReservation();
-				switchMenuModifyReservation(vista.opcMenu4());
+				switchMenuModifyReservation(vista.opcMenu3());
 				break;
 		case 2:
 				RepoReserva.saveFile("reserva.xml");
 				vista.showMenuModifyReservation();
-				switchMenuModifyReservation(vista.opcMenu4());
+				switchMenuModifyReservation(vista.opcMenu3());
 				break;
-		case 3:
-				RepoReserva.saveFile("reserva.xml");
-				vista.showMenuModifyReservation();
-				switchMenuModifyReservation(vista.opcMenu4());
-				break;
-		case 4: vista.showMenuReservation();
+		case 3: vista.showMenuReservation();
 				switchMenuReservation(vista.opcMenu6());
 				break;
 		}

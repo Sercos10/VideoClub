@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Enums.Category;
+import Enums.Status;
 import Interfaces.IVista;
 import Modelo.Client;
 import Modelo.Product;
@@ -77,10 +78,9 @@ public class Vista implements IVista{
 	}
 
 	public void showMenuModifyReservation() {
-		System.out.println("1. Modificar fecha de creacion");
-		System.out.println("2. Modificar fecha final");
-		System.out.println("3. Modificar estado de la reserva");
-		System.out.println("4. Volver");
+		System.out.println("1. Modificar fecha final");
+		System.out.println("2. Modificar estado de la reserva");
+		System.out.println("3. Volver");
 	}
 	
 	public void showCategoryMenu() {
@@ -229,6 +229,28 @@ public class Vista implements IVista{
 		default:
 			return Category.PELICULAS;
 		}
+	}
+	
+	public Status leeStatus(String s) {
+		this.print(s);
+		showStatusMenu();
+		int opc=opcMenu3();
+		switch(opc) {
+		case 1:
+			return Status.ENTREGADO;
+		case 2:
+			return Status.RESERVADO;
+		case 3:
+			return Status.EXPIRADO;
+		default:
+			return Status.RESERVADO;
+		}
+	}
+	
+	public void showStatusMenu() {
+		System.out.println("1. Entregado");
+		System.out.println("2. Reservado");
+		System.out.println("3. Expirado");
 	}
 
 	
