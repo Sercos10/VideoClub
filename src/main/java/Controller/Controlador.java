@@ -16,28 +16,26 @@ import Interfaces.IVista;
 import Vista.Utils;
 import Vista.Vista;
 import Modelo.Client;
+import Modelo.Copia;
 import Modelo.Product;
 import Modelo.RepoClient;
 import Modelo.RepoProduct;
 import Modelo.RepoReservation;
+import Modelo.Reservation;
 
 public class Controlador implements IController{
-	ICopia copia;
-	IRepoCopia RepoCopia;
 	IVista vista = new Vista();
 	Utils u = new Utils();
 	IReposClient RepoCliente = RepoClient.getInstance();
 	IClient client = new Client();
-	IProduct product;
+	IProduct product = new Product();
 	IRepoProduct RepoProducto = RepoProduct.getInstance();
-	IReservation reserva;
+	IReservation reserva = new Reservation();
 	IRespoReservation RepoReserva = RepoReservation.getInstance();
 	
 	
 	private void switchMain(int op) {
-		RepoCliente.loadFile("Cliente.xml");
-		RepoProducto.loadFile("Producto.xml");
-		RepoReserva.loadFile("Reserva.xml");
+		
 		switch (op) {
 		case 1: vista.showMenuClient();
 				switchMenuCliente(vista.opcMenu7());
@@ -76,7 +74,6 @@ public class Controlador implements IController{
 				switchMenuCliente(vista.opcMenu7());
 				break;
 		case 6: vista.showMenuReservation();
-				vista.showMenuReservation();
 				switchMenuReservation(vista.opcMenu6());
 				break;
 		case 7: vista.showMainMenu();
@@ -106,7 +103,9 @@ public class Controlador implements IController{
 				switchMenuProduct(vista.opcMenu6());
 				break;
 		case 5: Integer id2 = vista.leeEntero("Introduce el ID del producto");
-				RepoProducto.searchProduct(id2);
+				vista.showClient(RepoProducto.searchProduct(id2));
+				vista.showMenuProduct();
+				switchMenuProduct(vista.opcMenu6());
 				break;
 		case 6: vista.showMainMenu();
 				switchMain(vista.opcMenu3());
