@@ -35,12 +35,12 @@ public class Utils {
 		return p;
 	}
 	public Client readClient(IVista v) {
-		String name,phone,time,address;
+		String name,phone,address;
 		Integer id,age;
 		name=v.leeString("Introduce el nombre del Cliente");
 		id=v.leeEntero("Introduce la id del Cliente");
 		phone=v.leeString("Introduce el numero de telefono del Cliente");
-		time=v.leeString("Introduce la hora");
+		LocalDateTime time=LocalDateTime.now();
 		address=v.leeString("Introduce la direccion del cliente");
 		age=v.leeEntero("Introduce la edad del Cliente");
 		
@@ -54,6 +54,7 @@ public class Utils {
 		Status estado = v.leeStatus("Introzca el estado de la reserva");
 		Reservation Reserva = new Reservation(id,Hora,endr,estado,c,copia);
 		Rr.addReservation(Reserva);
+		return Reserva;
 	}
 	public Copia copyGenerator(Product p){
 		int cont=0;
