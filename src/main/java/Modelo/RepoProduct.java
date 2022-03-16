@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.bind.JAXBContext;
@@ -13,7 +12,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import Enums.Category;
-import Interfaces.ICopia;
 import Interfaces.IProduct;
 import Interfaces.IRepoProduct;
 

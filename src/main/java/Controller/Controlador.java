@@ -5,9 +5,7 @@ import java.time.LocalDateTime;
 import Enums.Category;
 import Interfaces.IClient;
 import Interfaces.IController;
-import Interfaces.ICopia;
 import Interfaces.IProduct;
-import Interfaces.IRepoCopia;
 import Interfaces.IRepoProduct;
 import Interfaces.IReposClient;
 import Interfaces.IReservation;
@@ -16,7 +14,6 @@ import Interfaces.IVista;
 import Vista.Utils;
 import Vista.Vista;
 import Modelo.Client;
-import Modelo.Copia;
 import Modelo.Product;
 import Modelo.RepoClient;
 import Modelo.RepoProduct;
@@ -24,8 +21,8 @@ import Modelo.RepoReservation;
 import Modelo.Reservation;
 
 public class Controlador implements IController{
-	IVista vista = new Vista();
-	Utils u = new Utils();
+	IVista vista = Vista.getInstance();
+	Utils u = Utils.getInstance();
 	IReposClient RepoCliente = RepoClient.getInstance();
 	IClient client = new Client();
 	IProduct product = new Product();
@@ -50,7 +47,7 @@ public class Controlador implements IController{
 	
 	private void switchMenuCliente(int op) {
 		switch (op) {
-		case 1: RepoCliente.addClient(u.readClient(vista));
+		case 1: RepoCliente.addClient(u.readClient());
 				RepoCliente.saveFile("cliente.xml");	
 				vista.showMenuClient();
 				switchMenuCliente(vista.opcMenu7());
@@ -84,7 +81,7 @@ public class Controlador implements IController{
 	
 	private void switchMenuProduct(int op) {
 		switch (op) {
-		case 1: RepoProducto.addProduct(u.readProduct(vista));
+		case 1: RepoProducto.addProduct(u.readProduct());
 				RepoProducto.saveFile("producto.xml");
 				vista.showMenuProduct();
 				switchMenuProduct(vista.opcMenu6());

@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.util.Random;
 
 import Interfaces.ICopia;
 import Enums.Category;
@@ -13,32 +12,18 @@ public class Copia extends Product implements ICopia{
 		this.id_copia = id_copia;
 	}
 	
-
-
 	public Copia() {
 	}
-
-
-
+	
 	private static final long serialVersionUID = 1L;
 	private Integer id_copia;
 	
-	public Integer getId_copia() {
+	public Integer getID_copia() {
 		return id_copia;
 	}
 
 	public void setId_copia(Integer id_copia) {
 		this.id_copia = id_copia;
-	}
-
-
-	public Integer idGenerator(){
-		int max = 200;
-		int min= 1;
-		Integer n=0;
-		Random random = new Random();
-		n=random.nextInt(max + min) + min;
-		return n;
 	}
 
 }

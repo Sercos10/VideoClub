@@ -12,6 +12,15 @@ import Modelo.Product;
 import Modelo.Reservation;
 
 public class Vista implements IVista{
+	private Vista() {
+	}
+	private static Vista mivista;
+	public static Vista getInstance() {
+		if(mivista==null) {
+			mivista=new Vista();
+		}
+		return mivista;
+	}
 
 	public void showMainMenu() {
 		System.out.println("------------------------------------------------------------------------------------------");

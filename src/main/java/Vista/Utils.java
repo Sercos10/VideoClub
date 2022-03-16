@@ -1,9 +1,13 @@
 package Vista;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import Enums.Category;
 import Enums.Status;
+import Interfaces.ICopia;
+import Interfaces.IProduct;
+import Interfaces.IRepoCopia;
 import Interfaces.IRespoReservation;
 import Interfaces.IVista;
 import Modelo.Client;
@@ -14,12 +18,21 @@ import Modelo.Reservation;
 import Modelo.Copia;
 
 public class Utils {
-	Copia c;
-	RepoCopia rc;
-	RepoReservation Rr= RepoReservation.getInstance();
+	private Utils() {
+	}
+	private static Utils myutils;
+	public static Utils getInstance() {
+		if(myutils==null) {
+			myutils=new Utils();
+		}
+		return myutils;
+	}
+	ICopia c = new Copia();
+	IRespoReservation Rr= RepoReservation.getInstance();
+	IVista v = Vista.getInstance();
+	IRepoCopia rc = RepoCopia.getInstance();
 	
-	
-	public Product readProduct(IVista v) {
+	public Product readProduct() {
 		String name,desc;
 		Integer id,ncopias;
 		Float price;
@@ -34,7 +47,7 @@ public class Utils {
 		copyGenerator(p);
 		return p;
 	}
-	public Client readClient(IVista v) {
+	public Client readClient() {
 		String name,phone,address;
 		Integer id,age;
 		name=v.leeString("Introduce el nombre del Cliente");
@@ -47,7 +60,7 @@ public class Utils {
 		Client c = new Client(id,name,phone,time,address,age);
 		return c;
 	}
-	public Reservation readReservation(IVista v,Client c,Copia copia) {
+	public Reservation readReservation(Client c,Copia copia) {
 		LocalDateTime Hora =LocalDateTime.now();
 		LocalDateTime endr = Hora.plusWeeks(6);
 		Integer id = v.leeEntero("Introduzca ID de la reserva");
@@ -56,14 +69,22 @@ public class Utils {
 		Rr.addReservation(Reserva);
 		return Reserva;
 	}
-	public Copia copyGenerator(Product p){
+	public Copia copyGenerator(IProduct p){
 		int cont=0;
-		do {
-			Integer idcopy=c.idGenerator();
-			Copia c = new Copia(p.getName(),p.getPrice(),p.getDescription(),p.getID(),p.getNCopias(),p.getCategory(),idcopy);
+		while(cont<p.getNCopias()) {
+			Integer idcopy=this.idGenerator();
+			ICopia c = new Copia(p.getName(),p.getPrice(),p.getDescription(),p.getID(),p.getNCopias(),p.getCategory(),idcopy);
 			rc.addCopy(c,p);
 			cont++;
-		}while(cont<p.getNCopias());
-		return c;
+		}
+		return (Copia)c;
+	}
+	public Integer idGenerator(){
+		int max = 200;
+		int min= 1;
+		Integer n=0;
+		Random random = new Random();
+		n=random.nextInt(max + min) + min;
+		return n;
 	}
 }
