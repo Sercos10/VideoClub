@@ -3,7 +3,6 @@ package Modelo;
 import Enums.Status;
 import Interfaces.IClient;
 import Interfaces.ICopia;
-import Interfaces.IProduct;
 import Interfaces.IReservation;
 
 import java.io.Serializable;
