@@ -2,9 +2,19 @@ package Modelo;
 
 
 import Interfaces.ICopia;
+
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAttribute;
+
 import Enums.Category;
 
-public class Copia extends Product implements ICopia{
+public class Copia extends Product implements Serializable, ICopia{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@XmlAttribute(name = "ID")
+	private Integer id_copia;
 	
 	public Copia(String name, Float price, String description, Integer id, Integer num_cop, Category category,
 			Integer id_copia) {
@@ -14,9 +24,6 @@ public class Copia extends Product implements ICopia{
 	
 	public Copia() {
 	}
-	
-	private static final long serialVersionUID = 1L;
-	private Integer id_copia;
 	
 	public Integer getID_copia() {
 		return id_copia;
