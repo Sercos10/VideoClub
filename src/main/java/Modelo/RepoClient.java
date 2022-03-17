@@ -107,6 +107,9 @@ public class RepoClient implements Serializable, IReposClient{
 			e.printStackTrace();
 		}
 	}
+	public boolean Contains(Integer id) {
+		return clientlist.containsKey(id);
+	}
 
 	public void loadFile(String url) {
 		JAXBContext contexto;

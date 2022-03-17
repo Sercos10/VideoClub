@@ -8,11 +8,15 @@ import Enums.Status;
 import Interfaces.ICopia;
 import Interfaces.IProduct;
 import Interfaces.IRepoCopia;
+import Interfaces.IRepoProduct;
+import Interfaces.IReposClient;
 import Interfaces.IRespoReservation;
 import Interfaces.IVista;
 import Modelo.Client;
 import Modelo.Product;
+import Modelo.RepoClient;
 import Modelo.RepoCopia;
+import Modelo.RepoProduct;
 import Modelo.RepoReservation;
 import Modelo.Reservation;
 import Modelo.Copia;
@@ -31,15 +35,17 @@ public class Utils {
 	IRespoReservation Rr= RepoReservation.getInstance();
 	IVista v = Vista.getInstance();
 	IRepoCopia rc = RepoCopia.getInstance();
-	
+	IRepoProduct rProduct= RepoProduct.getInstance();
+	IReposClient rClient = RepoClient.getInstance();	
 	public Product readProduct() {
 		String name,desc;
 		Integer id,ncopias;
 		Float price;
 		Category categoria;
+		id=v.leeEntero("Introduce la id del Producto");
+		searchKeyProduct(id);
 		name=v.leeString("Introduce el nombre del producto");
 		desc=v.leeString("Introduce la descripcion del producto");
-		id=v.leeEntero("Introduce la id del Producto");
 		price=v.leeFloat("Introduce el precio del producto");
 		ncopias=v.leeEntero("Introduzca el numero de copias");
 		categoria=v.leeCategory("Seleccione que categoria");
@@ -52,6 +58,7 @@ public class Utils {
 		Integer id,age;
 		name=v.leeString("Introduce el nombre del Cliente");
 		id=v.leeEntero("Introduce la id del Cliente");
+		searchKeyClient(id);
 		phone=v.leeString("Introduce el numero de telefono del Cliente");
 		LocalDateTime time=LocalDateTime.now();
 		address=v.leeString("Introduce la direccion del cliente");
@@ -87,4 +94,40 @@ public class Utils {
 		n=random.nextInt(max + min) + min;
 		return n;
 	}
+	public void esperar(int segundos) {
+		try {
+			Thread.sleep(segundos * 1000);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+	public Integer searchKeyProduct(Integer id) {
+		Integer newid;
+		while (rProduct.Contains(id)) {
+			v.print("Esta id ya esta asociada a otro producto");
+			newid = v.leeEntero("Introduzca la id");
+			id = newid;
+		}
+		return id;
+	}
+
+	public Integer searchKeyClient(Integer id) {
+		Integer newid;
+		while (rClient.Contains(id)) {
+			if (!rClient.Contains(id)) {
+				v.print("La id está disponible y se le ha asociado correctamente");
+			}
+			v.print("Esta id ya esta asociada a otro cliente\n");
+			newid = v.leeEntero("Introduzca otra id");
+			id = newid;
+		}
+		return id;
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -15,6 +15,7 @@ public interface IReposClient {
 	IClient searchClient(Integer ID);
 	boolean addClient(IClient c);
 	boolean removeClient(Integer ID);
+	boolean Contains(Integer ID);
     void saveFile(String url);
     void loadFile(String url);
     

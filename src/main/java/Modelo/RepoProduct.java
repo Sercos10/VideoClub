@@ -74,6 +74,9 @@ public class RepoProduct implements IRepoProduct {
 			productList.get(ID).setPrice(prize);
 		}
 	}
+	public boolean Contains(Integer id) {
+		return productList.containsKey(id);
+	}
 
 	public void saveFile(String url) {
 		JAXBContext contexto;
