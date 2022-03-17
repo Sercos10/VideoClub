@@ -70,6 +70,15 @@ public class RepoReservation implements Serializable, IRespoReservation {
             reservations.get(ID).setStatus(status);
         }
     }
+
+    public Integer ReserCount(){
+        int cont=0;
+        for (Reservation r: reservations.values()) {
+            if (r!=null)
+                cont++;
+        }
+        return cont;
+    }
     
     public IReservation searchReservation(Integer ID) {
 		return(this.reservations.get(ID));
