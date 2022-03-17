@@ -72,10 +72,9 @@ public class Vista implements IVista{
 	public void showMenuModifyClient() {
 		System.out.println("1. Modificar nombre");
 		System.out.println("2. Modificar telefono");
-		System.out.println("3. Modificar fecha de alta");
-		System.out.println("4. Modificar direccion");
-		System.out.println("5. Modificar edad");
-		System.out.println("6. Volver");
+		System.out.println("3. Modificar direccion");
+		System.out.println("4. Modificar edad");
+		System.out.println("5. Volver");
 	}
 
 	public void showMenuModifyProduct() {
@@ -159,50 +158,69 @@ public class Vista implements IVista{
 
 	public Integer opcMenu3() {
 		boolean valid= false;
-		Integer opcion=0;
+		Integer opcion=-1;
 		do {
+			valid = false;
 			opcion=leeEntero("Introduzca una opcion");
-			if(opcion<1 || opcion>3);
+			if(opcion<1 || opcion>3) {
+			System.out.println("Debe insertar un valor valido");
+			valid=true;
+			}
 		}while(valid);
 		return opcion;
 	}
 
 	public Integer opcMenu6() {
 		boolean valid= false;
-		Integer opcion=0;
+		Integer opcion=-1;
 		do {
+			valid = false;
 			opcion=leeEntero("Introduzca una opcion");
-			if(opcion<1 || opcion>6);
+			if(opcion<1 || opcion>6) {
+			System.out.println("Debe insertar un valor valido");
+			valid=true;
+			}
 		}while(valid);
 		return opcion;
 	}
 
 	public Integer opcMenu5() {
 		boolean valid= false;
-		Integer opcion=0;
+		Integer opcion=-1;
 		do {
+			valid = false;
 			opcion=leeEntero("Introduzca una opcion");
-			if(opcion<1 || opcion>5);
+			if(opcion<1 || opcion>5) {
+			System.out.println("Debe insertar un valor valido");
+			valid=true;
+			}
 		}while(valid);
 		return opcion;
 	}
 
 	public Integer opcMenu4() {
 		boolean valid= false;
-		Integer opcion=0;
+		Integer opcion=-1;
 		do {
+			valid = false;
 			opcion=leeEntero("Introduzca una opcion");
-			if(opcion<1 || opcion>4);
+			if(opcion<1 || opcion>4) {
+			System.out.println("Debe insertar un valor valido");
+			valid=true;
+			}
 		}while(valid);
 		return opcion;
 	}
-	
 	public Integer opcMenu7() {
 		boolean valid= false;
-		Integer opcion=0;
+		Integer opcion=-1;
 		do {
+			valid = false;
 			opcion=leeEntero("Introduzca una opcion");
-			if(opcion<1 || opcion>7);
+			if(opcion<1 || opcion>7) {
+			System.out.println("Debe insertar un valor valido");
+			valid=true;
+			}
 		}while(valid);
 		return opcion;
 	}

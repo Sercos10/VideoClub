@@ -14,6 +14,7 @@ public interface IRepoProduct {
 	void modifyPrize(Integer ID, float precio);
 	void modifyCategory(Integer ID, Category category);
 	IProduct searchProduct(Integer ID);
+	boolean Contains(Integer ID);
     void saveFile(String url);
     void loadFile(String url);
 }
