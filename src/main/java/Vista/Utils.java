@@ -74,6 +74,8 @@ public class Utils {
 		Status estado = v.leeStatus("Introzca el estado de la reserva");
 		Reservation Reserva = new Reservation(id,Hora,endr,estado,c,copia);
 		Rr.addReservation(Reserva);
+		Rr.getReservations().get(Reserva.getID()).setStatus(Status.RESERVADO);
+		rc.delCopy(copia);
 		return Reserva;
 	}
 	public Copia copyGenerator(IProduct p){
@@ -116,7 +118,7 @@ public class Utils {
 		Integer newid;
 		while (rClient.Contains(id)) {
 			if (!rClient.Contains(id)) {
-				v.print("La id está disponible y se le ha asociado correctamente");
+				v.print("La id estï¿½ disponible y se le ha asociado correctamente");
 			}
 			v.print("Esta id ya esta asociada a otro cliente\n");
 			newid = v.leeEntero("Introduzca otra id");
