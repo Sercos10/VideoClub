@@ -13,8 +13,14 @@ import Modelo.Reservation;
 
 public class Vista implements IVista{
 	private Vista() {
+		
 	}
 	private static Vista mivista;
+	
+	/**
+	 * Metodo para convertir vista en patron singleton
+	 * @return devuelve vista
+	 */
 	public static Vista getInstance() {
 		if(mivista==null) {
 			mivista=new Vista();
@@ -22,6 +28,9 @@ public class Vista implements IVista{
 		return mivista;
 	}
 
+	/**
+	 * Metodo de la vista principal del menu
+	 */
 	public void showMainMenu() {
 		System.out.println("------------------------------------------------------------------------------------------");
 		System.out.println("|  _         _    _    ___     ____    _______    _____    _        _     _    ____      |");                          
@@ -41,6 +50,9 @@ public class Vista implements IVista{
 		System.out.println("-----------------------------------------------------------------------------------------");
 	}
 
+	/**
+	 * Metodo de la vista del menu de cliente
+	 */
 	public void showMenuClient() {
 		System.out.println("1. Anadir cliente");
 		System.out.println("2. Eliminar cliente");
@@ -51,6 +63,9 @@ public class Vista implements IVista{
 		System.out.println("7. Volver");
 	}
 
+	/**
+	 * Metodo de la vista del menu de producto
+	 */
 	public void showMenuProduct() {
 		System.out.println("1. Anadir producto");
 		System.out.println("2. Eliminar producto");
@@ -60,6 +75,9 @@ public class Vista implements IVista{
 		System.out.println("6. Volver");
 	}
 
+	/**
+	 * Metodo de la vista del menu de reserva
+	 */
 	public void showMenuReservation() {
 		System.out.println("1. Crear reserva");
 		System.out.println("2. Eliminar reserva");
@@ -69,6 +87,9 @@ public class Vista implements IVista{
 		System.out.println("6. Volver");
 	}
 
+	/**
+	 * Metodo de la vista del menu de modificar un cliente
+	 */
 	public void showMenuModifyClient() {
 		System.out.println("1. Modificar nombre");
 		System.out.println("2. Modificar telefono");
@@ -77,6 +98,9 @@ public class Vista implements IVista{
 		System.out.println("5. Volver");
 	}
 
+	/**
+	 * Metodo de la vista del menu de modificar un producto
+	 */
 	public void showMenuModifyProduct() {
 		System.out.println("1. Modificar nombre");
 		System.out.println("2. Modificar descripcion");
@@ -85,12 +109,19 @@ public class Vista implements IVista{
 		System.out.println("5. Volver");
 	}
 
+	/**
+	 * Metodo de la vista del menu de modificacr una reserva
+	 */
 	public void showMenuModifyReservation() {
 		System.out.println("1. Modificar fecha final");
 		System.out.println("2. Modificar estado de la reserva");
 		System.out.println("3. Volver");
 	}
 	
+	/**
+	 * Metodo que muestra las categorias de los productos para poder elegirlas a la hora de crear
+	 * o modificar un producto
+	 */
 	public void showCategoryMenu() {
 		System.out.println("1. Peliculas");
 		System.out.println("2. Juegos");
@@ -98,18 +129,28 @@ public class Vista implements IVista{
 
 	}
 	
+	/**
+	 * Metodo para mostrar la lista de clientes que se encuentra en el hashmap
+	 */
 	public void showClientList(HashMap <Integer, Client> c){
 		for(Integer key:c.keySet()) {
 			System.out.println("ID: " +key+ "Value: " +c.get(key));
 		}
 	}
 	
+	/**
+	 * Metodo que muestra todas las reservas que se encuentra en el hashmap
+	 * @param c
+	 */
 	public void showReservations(HashMap <Integer, Reservation> c){
 		for(Integer key:c.keySet()) {
 			System.out.println("ID: " +key+ "Value: " +c.get(key));
 		}
 	}
 
+	/**
+	 * Metodo que controla los errores a la hora de introducir un entero
+	 */
 	public Integer leeEntero(String frase) {
 		Scanner teclado= new Scanner(System.in);
 		boolean valid=false;
@@ -127,6 +168,9 @@ public class Vista implements IVista{
 		return numero;
 	}
 
+	/**
+	 * Metodo que controla los errores a la hora de introducir un float
+	 */
 	public Float leeFloat(String frase) {
 		Scanner teclado= new Scanner(System.in);
 		boolean valid=false;
@@ -144,6 +188,9 @@ public class Vista implements IVista{
 		return numero;
 	}
 
+	/**
+	 * Metodo que lee por teclado una cadena de caracteres
+	 */
 	public String leeString(String frase) {
 		Scanner teclado= new Scanner (System.in);
 		String f="";
@@ -152,10 +199,17 @@ public class Vista implements IVista{
 		return f;
 	}
 
+	/**
+	 * Metodo para imprimir por pantalla una cadena de caracteres
+	 */
 	public void print(String s) {
 		System.out.println(s);
 	}
 
+	/**
+	 * Metodo para elegir la opcion del menu para elegir en donde queremos entrar
+	 * Controla los errores para que tengamos que elegir una opcion que este en el menu
+	 */
 	public Integer opcMenu3() {
 		boolean valid= false;
 		Integer opcion=-1;
@@ -170,6 +224,10 @@ public class Vista implements IVista{
 		return opcion;
 	}
 
+	/**
+	 * Metodo para elegir la opcion del menu para elegir en donde queremos entrar
+	 * Controla los errores para que tengamos que elegir una opcion que este en el menu 
+	 */
 	public Integer opcMenu6() {
 		boolean valid= false;
 		Integer opcion=-1;
@@ -184,6 +242,10 @@ public class Vista implements IVista{
 		return opcion;
 	}
 
+	/**
+	 * Metodo para elegir la opcion del menu para elegir en donde queremos entrar
+	 * Controla los errores para que tengamos que elegir una opcion que este en el menu
+	 */
 	public Integer opcMenu5() {
 		boolean valid= false;
 		Integer opcion=-1;
@@ -198,6 +260,10 @@ public class Vista implements IVista{
 		return opcion;
 	}
 
+	/**
+	 * Metodo para elegir la opcion del menu para elegir en donde queremos entrar
+	 * Controla los errores para que tengamos que elegir una opcion que este en el menu 
+	 */
 	public Integer opcMenu4() {
 		boolean valid= false;
 		Integer opcion=-1;
@@ -211,6 +277,11 @@ public class Vista implements IVista{
 		}while(valid);
 		return opcion;
 	}
+	
+	/**
+	 *  Metodo para elegir la opcion del menu para elegir en donde queremos entrar
+	 *  Controla los errores para que tengamos que elegir una opcion que este en el menu
+	 */
 	public Integer opcMenu7() {
 		boolean valid= false;
 		Integer opcion=-1;
@@ -225,10 +296,16 @@ public class Vista implements IVista{
 		return opcion;
 	}
 	
+	/**
+	 * Metodo que imprime un objeto por pantalla, ya sea reserva, cliente o producto
+	 */
 	public void showClient(Object o) {
 		System.out.println(o);
 	}
 
+	/**
+	 * Muestra la lista de productos que se encuentra en el hashmap
+	 */
 	public void showProductList(HashMap<Integer, Product> p) {
 		for (Integer key : p.keySet()) {
 			System.out.println(p.get(key));
@@ -236,12 +313,18 @@ public class Vista implements IVista{
 		
 	}
 
+	/**
+	 * Metodo para mostrar las reservas que se encuentran en el hashmap
+	 */
 	public void showReservationList(HashMap<Integer, Reservation> reserva) {
 		for (Integer key : reserva.keySet()) {
 			System.out.println(reserva.get(key));
 		}
 	}
 
+	/**
+	 * Metodo para elegir una categoria del producto a la hora de crear o modificar el producto
+	 */
 	public Category leeCategory(String s) {
 		this.print(s);
 		showCategoryMenu();
@@ -258,6 +341,9 @@ public class Vista implements IVista{
 		}
 	}
 	
+	/**
+	 * Metodo para leer el status de la reserva a la hora de modificar la reserva
+	 */
 	public Status leeStatus(String s) {
 		this.print(s);
 		showStatusMenu();
@@ -274,6 +360,9 @@ public class Vista implements IVista{
 		}
 	}
 	
+	/**
+	 * Metodo para mostrar los status la reserva y poder elegirlos a la hora de modificar la reserva
+	 */
 	public void showStatusMenu() {
 		System.out.println("1. Entregado");
 		System.out.println("2. Reservado");

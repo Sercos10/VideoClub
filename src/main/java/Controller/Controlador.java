@@ -1,7 +1,10 @@
 package Controller;
 
 
+import java.time.LocalDateTime;
+
 import Enums.Category;
+import Enums.Status;
 import Interfaces.IClient;
 import Interfaces.IController;
 import Interfaces.IProduct;
@@ -29,6 +32,10 @@ public class Controlador implements IController {
 	IReservation reserva = new Reservation();
 	IRespoReservation RepoReserva = RepoReservation.getInstance();
 
+	/**
+	 * Menu Principal que se encarga de llamar a todos los submenus
+	 * @param op opcion que le pasamos al programa para elegir donde queremos ir
+	 */
 	private void switchMain(int op) {
 
 		switch (op) {
@@ -46,6 +53,10 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Menu de clientes donde manejamos varias opciones ademas de tener submenus. 
+	 * @param op opciones que le pasamos para elegir donde ir
+	 */
 	private void switchMenuCliente(int op) {
 		switch (op) {
 		case 1:
@@ -87,6 +98,11 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Menu de producto donde controlamos todas las opciones de producto y tiene varios submenus 
+	 * para modificar el producto
+	 * @param op opcion que le pasamos al programa para elegir a donde ir
+	 */
 	private void switchMenuProduct(int op) {
 		switch (op) {
 		case 1:
@@ -124,6 +140,11 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Menu para modificar el cliente, donde controlamos todas las opciones para poder
+	 * modificarlo
+	 * @param op opcion que le pasamos al programa para poder elegir que queremos modificar
+	 */
 	private void switchMenuModifyClient(int op) {
 		switch (op) {
 		case 1:
@@ -169,6 +190,10 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Menu donde elegimos que queremos modificar del producto
+	 * @param op opcion que elegimos para poder modificar el producto
+	 */
 	private void switchModifyProduct(int op) {
 		switch (op) {
 		case 1:
@@ -214,6 +239,10 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Menu de reservas donde podremos elegir el cliente y el producto para hacer una reserva
+	 * @param op opcion que le pasamos al menu para poder elegir entre las opciones
+	 */
 	private void switchMenuReservation(int op) {
 		switch (op) {
 		case 1:
@@ -222,15 +251,24 @@ public class Controlador implements IController {
 			switchMenuReservation(vista.opcMenu6());
 			break;
 		case 2:
+			Integer id9 = vista.leeEntero("Introduce la ID de la reserva");
+			RepoReserva.delReservation(id9);
 			RepoReserva.saveFile("reserva.xml");
+			vista.showMenuReservation();
+			switchMenuReservation(vista.opcMenu6());
 			break;
 		case 3:
 			vista.showMenuModifyReservation();
 			switchMenuModifyReservation(vista.opcMenu3());
 			break;
 		case 4:
+			
 			break;
 		case 5:
+			Integer id10 = vista.leeEntero("Introduce la ID de la reserva");
+			vista.showClient(RepoReserva.searchReservation(id10));
+			vista.showMenuReservation();
+			switchMenuReservation(vista.opcMenu6());
 			break;
 		case 6:
 			vista.showMenuClient();
@@ -239,14 +277,24 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Menu para poder modificar varios aspectos de la reserva
+	 * @param op opcion que le pasamos al menu para elegir que queremos modificar de la reserva
+	 */
 	private void switchMenuModifyReservation(int op) {
 		switch (op) {
 		case 1:
+			Integer id12 = vista.leeEntero("Introduce el ID de la reserva");
+			LocalDateTime time = time.plusWeeks(6);
+			RepoReserva.modifyFechaFinal(id12, time);
 			RepoReserva.saveFile("reserva.xml");
 			vista.showMenuModifyReservation();
 			switchMenuModifyReservation(vista.opcMenu3());
 			break;
 		case 2:
+			Integer id11 = vista.leeEntero("Introduce la ID de la reserva");
+			Status st = vista.leeStatus("Introduce el nuevo status de la reserva");
+			RepoReserva.modifyStatus(id11, st);
 			RepoReserva.saveFile("reserva.xml");
 			vista.showMenuModifyReservation();
 			switchMenuModifyReservation(vista.opcMenu3());
@@ -258,6 +306,11 @@ public class Controlador implements IController {
 		}
 	}
 
+	/**
+	 * Metodo que se encarga de controlar los errores al introducir una ID para modificar el cliente
+	 * @param id que le pasamos al metodo para saber que cliente queremos modificar
+	 * @return
+	 */
 	public Integer searchKeyClienttoModify(Integer id) {
 		int cont = 0;
 		Integer newid;
@@ -277,6 +330,11 @@ public class Controlador implements IController {
 		return id;
 	}
 
+	/**
+	 * Metodo para controlar los errores al introducir una ID del producto que no exista
+	 * @param id del producto que queremos modificar
+	 * @return
+	 */
 	public Integer searchKeyProducttoModify(Integer id) {
 		int cont = 0;
 		Integer newid;
@@ -296,6 +354,10 @@ public class Controlador implements IController {
 		return id;
 	}
 
+	/**
+	 * Programa principal que se encarga de llamar al menu principal y el mismo se encarga de llamar 
+	 * a los otros metodos para poder ejecutar el programa
+	 */
 	public void run() {
 		vista.showMainMenu();
 		switchMain(vista.opcMenu3());
