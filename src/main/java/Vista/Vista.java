@@ -9,9 +9,14 @@ import Enums.Status;
 import Interfaces.IVista;
 import Modelo.Client;
 import Modelo.Product;
+import Modelo.RepoCopia;
 import Modelo.Reservation;
 
+
 public class Vista implements IVista{
+	
+	RepoCopia rCopia = RepoCopia.getInstance();
+	
 	private Vista() {
 		
 	}
@@ -146,6 +151,14 @@ public class Vista implements IVista{
 		for(Integer key:c.keySet()) {
 			System.out.println("ID: " +key+ "Value: " +c.get(key));
 		}
+	}
+	
+	/**
+	 * Muestra el menu de copias del producto creado
+	 * @param id de la copia que vamos a elegir
+	 */
+	public void showCopyList(Integer id) {
+		rCopia.CopyByIdProduct(id);
 	}
 
 	/**

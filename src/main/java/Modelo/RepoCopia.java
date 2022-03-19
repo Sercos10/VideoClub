@@ -1,30 +1,84 @@
 package Modelo;
 
-import java.util.HashMap;
+import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-import Interfaces.ICopia;
-import Interfaces.IProduct;
-import Interfaces.IRepoCopia;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
-public class RepoCopia implements IRepoCopia{
+public class RepoCopia implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Copia> ListaCopias;
+
 	private RepoCopia() {
-		ListaCopias = new HashMap<Integer,Copia>();
+		ListaCopias = new ArrayList<Copia>();
 	}
-	private static RepoCopia Rc;
+
+	private static RepoCopia RC;
+
 	public static RepoCopia getInstance() {
-		if(Rc==null) {
-			Rc = new RepoCopia();
+		if (RC == null) {
+			RC = new RepoCopia();
 		}
-		return Rc;
+		return RC;
 	}
-	
-	private HashMap<Integer,Copia> ListaCopias;
-	
-	
-	public void addCopy(ICopia c,IProduct p) {
-		ListaCopias.put(c.getID(),(Copia)c);
+
+	public void addCopy(Copia c) {
+		ListaCopias.add(c);
 	}
-	public boolean Contains(Integer a) {
-		return ListaCopias.containsKey(a);	
+
+	public void CopyByIdProduct(Integer id) {
+		for (Copia c : ListaCopias) {
+			if (c.getID() == id) {
+				System.out.println(c);
+			}
+		}
+	}
+
+	public void saveFile(String url) {
+		JAXBContext contexto;
+		try {
+			contexto = JAXBContext.newInstance(RepoClient.class);
+			Marshaller m = contexto.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+			m.marshal(RC, new File(url));
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void removeCopy(Copia c) {
+		ListaCopias.remove(c);
+	}
+
+	public Copia getCopy(Integer id) {
+		Copia aux = new Copia();
+		for(Copia c : ListaCopias) {
+			if(c.getId_copia()==id) {
+				System.out.println(c);
+			aux=c;
+			return aux;
+			}
+		}
+		return aux;
+			
+		}
+
+	public void loadFile(String url) {
+		JAXBContext contexto;
+		try {
+			contexto = JAXBContext.newInstance(RepoCopia.class);
+			Unmarshaller um = contexto.createUnmarshaller();
+
+			RepoCopia newRepoCopias = (RepoCopia) um.unmarshal(new File(url));
+			ListaCopias = newRepoCopias.ListaCopias;
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
 	}
 }

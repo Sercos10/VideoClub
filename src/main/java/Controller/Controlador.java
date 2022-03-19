@@ -246,6 +246,7 @@ public class Controlador implements IController {
 	private void switchMenuReservation(int op) {
 		switch (op) {
 		case 1:
+			this.newReserva();
 			RepoReserva.saveFile("reserva.xml");
 			vista.showMenuReservation();
 			switchMenuReservation(vista.opcMenu6());
@@ -262,7 +263,12 @@ public class Controlador implements IController {
 			switchMenuModifyReservation(vista.opcMenu3());
 			break;
 		case 4:
-			
+			if (RepoReserva.isEmpty()) {
+				vista.print("No hay Reservas para mostrar");
+			}
+			vista.showReservaList(RepoReserva.getReservations());
+			vista.showMenuModifyReservation();
+			switchMenuModifyReservation(vista.opcMenu4());
 			break;
 		case 5:
 			Integer id10 = vista.leeEntero("Introduce la ID de la reserva");
@@ -352,6 +358,50 @@ public class Controlador implements IController {
 			}
 		}
 		return id;
+	}
+	
+	public Integer searchKeyRerservationtoModify(Integer id) {
+		int cont = 0;
+		Integer newid;
+
+		while (!RepoReserva.contains(id)) {
+			cont++;
+			vista.print("Esta id no esta asociada a ninguna reserva");
+			newid = vista.leeEntero("Introduzca otra id");
+			id = newid;
+			if (cont == 3) {
+				System.out.println("Has agotado tus intentos volveras al Programa Principal en 3 segundos");
+				esperar(3);
+				vista.showMainMenu();
+				switchMain(vista.opcMenu3());
+			}
+		}
+		return id;
+	}
+	
+	public void newReserva() {
+		vista.showClientList(RepoCliente.getClientList());
+		Integer id_cliente = vista.leeEntero("Introduzca la id del cliente que quiere hacer la reserva\n");
+		searchKeyClienttoModify(id_cliente);
+		vista.showProductList(RepoProducto.getProductList());
+		Integer id_producto = vista.leeEntero("Introduzca la id del producto que quiere hacer la reserva\n");
+		searchKeyProducttoModify(id_producto);
+		vista.showCopyList(id_producto);
+		Integer id_copia = vista.leeEntero("Introduzca la id de la copia que quiere reservar\n");
+		u.readReservation(RepoCliente.getClient(id_cliente), rCopy.getCopy(id_copia));
+	}
+	
+	/**
+	 * metodo que sirve para hacer una espera en un control de errores
+	 * @param segundos que queremos asignar a la espera
+	 */
+	public static void esperar(int segundos) {
+		try {
+			Thread.sleep(segundos * 1000);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 
 	/**
