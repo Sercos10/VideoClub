@@ -8,8 +8,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import Interfaces.IRepoCopia;
 
-public class RepoCopia implements Serializable {
+public class RepoCopia implements Serializable, IRepoCopia {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Copia> ListaCopias;
 
@@ -81,4 +82,5 @@ public class RepoCopia implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
 }

@@ -31,4 +31,5 @@ public interface IVista {
     Integer opcMenu5();
     Integer opcMenu4();
     void showClient(Object O);
+    void showCopyList(Integer id);
 }

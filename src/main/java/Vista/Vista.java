@@ -118,9 +118,8 @@ public class Vista implements IVista{
 	 * Metodo de la vista del menu de modificacr una reserva
 	 */
 	public void showMenuModifyReservation() {
-		System.out.println("1. Modificar fecha final");
-		System.out.println("2. Modificar estado de la reserva");
-		System.out.println("3. Volver");
+		System.out.println("1. Modificar estado de la reserva");
+		System.out.println("2. Volver");
 	}
 	
 	/**

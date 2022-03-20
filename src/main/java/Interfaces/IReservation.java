@@ -1,6 +1,9 @@
 package Interfaces;
 
 import Enums.Status;
+import Modelo.Client;
+import Modelo.Copia;
+import Modelo.Product;
 
 import java.time.LocalDateTime;
 
@@ -14,9 +17,9 @@ public interface IReservation {
     Status getStatus();
     void setStatus(Status status);
     IClient getClient();
-    void setClient(IClient client);
-    ICopia getCopia();
-    void setCopia(ICopia copia);
+    void setClient(Client client);
+    Product getCopia();
+    void setCopia(Copia copia);
     boolean equals(Object o);
     String toString();
 }

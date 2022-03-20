@@ -8,12 +8,19 @@ import Interfaces.IReservation;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 public class Reservation implements Serializable, IReservation {
 
 	private static final long serialVersionUID = 1L;
 
 	 private Integer ID;
+	 @XmlElement
+	 @XmlJavaTypeAdapter(type = LocalDateTime.class, value = Adapters.LocalDateTimeBind.class)
 	 private LocalDateTime DateReser;
+	 @XmlElement
+	 @XmlJavaTypeAdapter(type = LocalDateTime.class, value = Adapters.LocalDateTimeBind.class)
 	 private LocalDateTime FinalDate;
 	 private Status status;
 	 private Client client;
@@ -113,4 +120,6 @@ public class Reservation implements Serializable, IReservation {
     public void setCopia(Copia copy) {
         this.copia = copy;
     }
+
+	
 }

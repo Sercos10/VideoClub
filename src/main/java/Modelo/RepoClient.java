@@ -71,6 +71,10 @@ public class RepoClient implements Serializable, IReposClient{
 		}
 	}
 	
+	public Client getClient(Integer id) {
+		return clientlist.get(id);
+	}
+	
 	public IClient searchClient(Integer ID) {
 		return(this.clientlist.get(ID));
 	}
@@ -109,6 +113,10 @@ public class RepoClient implements Serializable, IReposClient{
 	}
 	public boolean Contains(Integer id) {
 		return clientlist.containsKey(id);
+	}
+	
+	public boolean isEmpty() {
+		return clientlist.isEmpty();
 	}
 
 	public void loadFile(String url) {

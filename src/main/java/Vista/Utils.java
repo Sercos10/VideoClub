@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 import Enums.Category;
 import Enums.Status;
+import Interfaces.ICopia;
+import Interfaces.IRepoCopia;
+import Interfaces.IRepoProduct;
+import Interfaces.IRespoReservation;
 import Modelo.Client;
 import Modelo.Copia;
 import Modelo.Product;
@@ -16,10 +20,10 @@ import Modelo.Reservation;
 public class Utils {
 	Vista v = Vista.getInstance();
 	Copia c = new Copia();
-	RepoCopia rCopy = RepoCopia.getInstance();
-	RepoProduct rProduct = RepoProduct.getInstance();
+	IRepoCopia rCopy = RepoCopia.getInstance();
+	IRepoProduct rProduct = RepoProduct.getInstance();
 	RepoClient  rClient= RepoClient.getInstance();
-	RepoReservation Rr = RepoReservation.getInstance();
+	IRespoReservation Rr = RepoReservation.getInstance();
 	private Utils() {
 	}
 	private static Utils u;
@@ -68,6 +72,7 @@ public class Utils {
 		Rr.addReservation(Reserva);
 		rCopy.removeCopy(copia);
 	}
+	
 	public Copia copyGenerator(Product p){
 		int cont=0;
 	while(cont<p.getNum_cop()) {
@@ -101,10 +106,17 @@ public class Utils {
 				v.print("Esta id ya esta asociada a otro cliente\n");
 				newid = v.leeEntero("Introduzca otra id");
 				id = newid;
+		while (rClient.Contains(id)) {
+			if (!rClient.Contains(id)) {
+				v.print("La id est� disponible y se le ha asociado correctamente");
 			}
+		}
+		
+	}
 		}
 		return id;
 	}
+	
 	public void removeReserva() {
 		Integer id = v.leeEntero("Introduzla el id de la reserva que quiera borrar");
 		Rr.delReservation(id);			

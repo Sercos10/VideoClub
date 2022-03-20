@@ -1,13 +1,12 @@
 package Controller;
 
 
-import java.time.LocalDateTime;
-
 import Enums.Category;
 import Enums.Status;
 import Interfaces.IClient;
 import Interfaces.IController;
 import Interfaces.IProduct;
+import Interfaces.IRepoCopia;
 import Interfaces.IRepoProduct;
 import Interfaces.IReposClient;
 import Interfaces.IReservation;
@@ -18,12 +17,14 @@ import Vista.Vista;
 import Modelo.Client;
 import Modelo.Product;
 import Modelo.RepoClient;
+import Modelo.RepoCopia;
 import Modelo.RepoProduct;
 import Modelo.RepoReservation;
 import Modelo.Reservation;
 
 public class Controlador implements IController {
 	IVista vista = Vista.getInstance();
+	IRepoCopia rCopy = RepoCopia.getInstance();
 	Utils u = Utils.getInstance();
 	IReposClient RepoCliente = RepoClient.getInstance();
 	IClient client = new Client();
@@ -266,9 +267,9 @@ public class Controlador implements IController {
 			if (RepoReserva.isEmpty()) {
 				vista.print("No hay Reservas para mostrar");
 			}
-			vista.showReservaList(RepoReserva.getReservations());
-			vista.showMenuModifyReservation();
-			switchMenuModifyReservation(vista.opcMenu4());
+			vista.showReservationList(RepoReserva.getReservations());
+			vista.showMenuReservation();
+			switchMenuReservation(vista.opcMenu6());
 			break;
 		case 5:
 			Integer id10 = vista.leeEntero("Introduce la ID de la reserva");
@@ -290,14 +291,6 @@ public class Controlador implements IController {
 	private void switchMenuModifyReservation(int op) {
 		switch (op) {
 		case 1:
-			Integer id12 = vista.leeEntero("Introduce el ID de la reserva");
-			LocalDateTime time = time.plusWeeks(6);
-			RepoReserva.modifyFechaFinal(id12, time);
-			RepoReserva.saveFile("reserva.xml");
-			vista.showMenuModifyReservation();
-			switchMenuModifyReservation(vista.opcMenu3());
-			break;
-		case 2:
 			Integer id11 = vista.leeEntero("Introduce la ID de la reserva");
 			Status st = vista.leeStatus("Introduce el nuevo status de la reserva");
 			RepoReserva.modifyStatus(id11, st);
@@ -305,7 +298,7 @@ public class Controlador implements IController {
 			vista.showMenuModifyReservation();
 			switchMenuModifyReservation(vista.opcMenu3());
 			break;
-		case 3:
+		case 2:
 			vista.showMenuReservation();
 			switchMenuReservation(vista.opcMenu6());
 			break;
@@ -328,7 +321,7 @@ public class Controlador implements IController {
 			id = newid;
 			if (cont == 3) {
 				System.out.println("Has agotado tus intentos volveras al Programa Principal en 3 segundos");
-				u.esperar(3);
+				esperar(3);
 				vista.showMainMenu();
 				switchMain(vista.opcMenu3());
 			}
@@ -352,7 +345,7 @@ public class Controlador implements IController {
 			id = newid;
 			if (cont == 3) {
 				System.out.println("Has agotado tus intentos volveras al Programa Principal en 3 segundos");
-				u.esperar(3);
+				esperar(3);
 				vista.showMainMenu();
 				switchMain(vista.opcMenu3());
 			}
@@ -364,7 +357,7 @@ public class Controlador implements IController {
 		int cont = 0;
 		Integer newid;
 
-		while (!RepoReserva.contains(id)) {
+		while (!RepoReserva.Contains(id)) {
 			cont++;
 			vista.print("Esta id no esta asociada a ninguna reserva");
 			newid = vista.leeEntero("Introduzca otra id");

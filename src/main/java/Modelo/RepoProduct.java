@@ -77,6 +77,10 @@ public class RepoProduct implements IRepoProduct {
 	public boolean Contains(Integer id) {
 		return productList.containsKey(id);
 	}
+	
+	public boolean isEmpty() {
+		return productList.isEmpty();
+	}
 
 	public void saveFile(String url) {
 		JAXBContext contexto;

@@ -18,5 +18,6 @@ public interface IReposClient {
 	boolean Contains(Integer ID);
     void saveFile(String url);
     void loadFile(String url);
+    Client getClient(Integer id);
     
 }

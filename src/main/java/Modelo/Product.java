@@ -21,7 +21,7 @@ public class Product implements IProduct, Serializable {
 	@XmlAttribute(name = "identificador")
 	private Integer id;
 	private Category category;
-	private Integer NCopias;
+	private Integer num_cop;
 	
 
 	public String getName() {
@@ -42,6 +42,14 @@ public class Product implements IProduct, Serializable {
 
 	public Integer getID() {
 		return id;
+	}
+	
+	public Integer getNum_cop() {
+		return num_cop;
+	}
+	
+	public void setNum_cop(Integer num_cop) {
+		this.num_cop = num_cop;
 	}
 
 	public void setPrice(Float price) {
@@ -73,12 +81,12 @@ public class Product implements IProduct, Serializable {
 		this.description = description;
 		this.id = id;
 		this.category = category;
-		NCopias = nCopias;
+		num_cop = nCopias;
 	}
 
 	public String toString() {
 		return "Product Name=" + Name + "Price=" + price + "\n description=" + description + "\n id=" + id
-				+ "\n category=" + category + "\n num_cop=" + NCopias;
+				+ "\n category=" + category + "\n num_cop=" + num_cop;
 	}
 
 	public Product() {
@@ -98,13 +106,5 @@ public class Product implements IProduct, Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public Integer getNCopias() {
-		return NCopias;
-	}
-
-	public void setNCopias(Integer ncopias) {
-		this.NCopias=ncopias;
 	}
 }
