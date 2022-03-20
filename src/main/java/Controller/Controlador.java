@@ -353,6 +353,11 @@ public class Controlador implements IController {
 		return id;
 	}
 	
+	/**
+	 * metodo para controlar los errores al introducir una id cuando modificas una reserva
+	 * @param id
+	 * @return
+	 */
 	public Integer searchKeyRerservationtoModify(Integer id) {
 		int cont = 0;
 		Integer newid;
@@ -372,6 +377,10 @@ public class Controlador implements IController {
 		return id;
 	}
 	
+	/**
+	 * metodo para hacer una reserva donde muestra los clientes y los productos, luego eliges una copia
+	 * y te la asigna
+	 */
 	public void newReserva() {
 		vista.showClientList(RepoCliente.getClientList());
 		Integer id_cliente = vista.leeEntero("Introduzca la id del cliente que quiere hacer la reserva\n");

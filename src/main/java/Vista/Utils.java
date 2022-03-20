@@ -34,6 +34,10 @@ public class Utils {
 		return u;
 	}
 	
+	/**
+	 * Metodo para leer un producto donde se crea con todos sus atributos y se genera las copias que queramos
+	 * @return el producto creado
+	 */
 	public Product readProduct() {
 		String name,desc;
 		Integer id,numcop;
@@ -50,6 +54,11 @@ public class Utils {
 		copyGenerator(p);
 		return p;
 	}
+	
+	/**
+	 * Metodo que lee un cliente y lo crea con todos sus atributos
+	 * @return el cliente creado
+	 */
 	public Client readClient() {
 		String name,phone,address;
 		Integer id,age;
@@ -64,6 +73,12 @@ public class Utils {
 		Client c = new Client(id,name,phone,time,address,age);
 		return c;
 	}
+	
+	/**
+	 * Metodo que le pasamos un cliente y una copia y crea la reserva
+	 * @param c cliente que mostramos y elegimos por teclado
+	 * @param copia que mostramos y elegimos por teclado
+	 */
 	public void readReservation(Client c,Copia copia) {
 		LocalDateTime Hora =LocalDateTime.now();
 		LocalDateTime endr = Hora.plusWeeks(6);
@@ -73,6 +88,12 @@ public class Utils {
 		rCopy.removeCopy(copia);
 	}
 	
+	/**
+	 * metodo para generar copias segun el numero de copias que le escribamos por teclado
+	 * llama a idgenerator que le asigna una id aleatoria
+	 * @param p producto del que queremos producir las copias
+	 * @return devuelve todas las copias creadas
+	 */
 	public Copia copyGenerator(Product p){
 		int cont=0;
 	while(cont<p.getNum_cop()) {
@@ -83,6 +104,12 @@ public class Utils {
 	}
 		return c;
 	}
+	
+	/**
+	 * metodo para introducir la id de um producto y que no este asociada a otro producto
+	 * @param id del producto
+	 * @return devuelve el numero entero de la id que queremos introducir
+	 */
 	public Integer searchKeyProduct(Integer id) {
 		Integer newid;
 		if (!rClient.Contains(id)) {
@@ -97,6 +124,11 @@ public class Utils {
 		return id;
 	}
 
+	/**
+	 * metodo para introducir una id de un cliente y que no este asignada a otro cliente
+	 * @param id del cliente
+	 * @return devuelve el numero entero de la id que queremos introducir
+	 */
 	public Integer searchKeyClient(Integer id) {
 		Integer newid;
 		if (!rClient.Contains(id)) {
@@ -117,6 +149,9 @@ public class Utils {
 		return id;
 	}
 	
+	/**
+	 * metodo para borrar una reserva
+	 */
 	public void removeReserva() {
 		Integer id = v.leeEntero("Introduzla el id de la reserva que quiera borrar");
 		Rr.delReservation(id);			
