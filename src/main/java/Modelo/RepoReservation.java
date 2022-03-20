@@ -40,23 +40,12 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
         return _instance;
     }
-    public boolean addReservation(IReservation r) {
-        Reservation aux= (Reservation) r;
-        boolean added=false;
-        if(!this.reservations.containsKey(aux.getID())) {
-            this.reservations.put(aux.getID(), aux);
-            added=true;
-        }
-        return added;
+    public void addReservation(Reservation r) {
+    	reservations.put(r.getID(), r);
     }
 
-    public boolean delReservation(Integer ID){
-        boolean deleted=false;
-        if (reservations!=null&&reservations.containsKey(ID)){
-            reservations.remove(ID);
-            deleted=true;
-        }
-        return deleted;
+    public void delReservation(Integer ID){
+    	reservations.remove(ID);
     }
 
     public void modifyFechaFinal(Integer ID, LocalDateTime date) {
@@ -92,6 +81,14 @@ public class RepoReservation implements Serializable, IRespoReservation {
             }
         }
     }
+    
+    public boolean Contains(Integer id) {
+		return reservations.containsKey(id);
+	}
+    
+	public boolean isEmpty() {
+		return reservations.isEmpty();
+	}
 
     public void saveFile(String url) {
         JAXBContext contexto;

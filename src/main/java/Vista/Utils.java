@@ -1,55 +1,52 @@
 package Vista;
 
 import java.time.LocalDateTime;
-import java.util.Random;
 
 import Enums.Category;
 import Enums.Status;
 import Interfaces.ICopia;
-import Interfaces.IProduct;
 import Interfaces.IRepoCopia;
 import Interfaces.IRepoProduct;
-import Interfaces.IReposClient;
 import Interfaces.IRespoReservation;
-import Interfaces.IVista;
 import Modelo.Client;
+import Modelo.Copia;
 import Modelo.Product;
 import Modelo.RepoClient;
 import Modelo.RepoCopia;
 import Modelo.RepoProduct;
 import Modelo.RepoReservation;
 import Modelo.Reservation;
-import Modelo.Copia;
 
 public class Utils {
+	Vista v = Vista.getInstance();
+	Copia c = new Copia();
+	IRepoCopia rCopy = RepoCopia.getInstance();
+	IRepoProduct rProduct = RepoProduct.getInstance();
+	RepoClient  rClient= RepoClient.getInstance();
+	IRespoReservation Rr = RepoReservation.getInstance();
 	private Utils() {
 	}
-	private static Utils myutils;
+	private static Utils u;
 	public static Utils getInstance() {
-		if(myutils==null) {
-			myutils=new Utils();
+		if(u==null) {
+			u = new Utils();
 		}
-		return myutils;
+		return u;
 	}
-	ICopia c = new Copia();
-	IRespoReservation Rr= RepoReservation.getInstance();
-	IVista v = Vista.getInstance();
-	IRepoCopia rc = RepoCopia.getInstance();
-	IRepoProduct rProduct= RepoProduct.getInstance();
-	IReposClient rClient = RepoClient.getInstance();	
+	
 	public Product readProduct() {
 		String name,desc;
-		Integer id,ncopias;
+		Integer id,numcop;
 		Float price;
-		Category categoria;
-		id=v.leeEntero("Introduce la id del Producto");
-		searchKeyProduct(id);
+		Category cat;
 		name=v.leeString("Introduce el nombre del producto");
 		desc=v.leeString("Introduce la descripcion del producto");
+		id=v.leeEntero("Introduce la id del Producto");
+		id=searchKeyProduct(id);
 		price=v.leeFloat("Introduce el precio del producto");
-		ncopias=v.leeEntero("Introduzca el numero de copias");
-		categoria=v.leeCategory("Seleccione que categoria");
-		Product p= new Product(name,price,desc,id,ncopias,categoria);
+		numcop=v.leeEntero("Introduce el numero de copias");
+		cat=v.leeCategory("Introduce la Categoria");
+		Product p= new Product(name,price,desc,id,numcop,cat);
 		copyGenerator(p);
 		return p;
 	}
@@ -58,7 +55,7 @@ public class Utils {
 		Integer id,age;
 		name=v.leeString("Introduce el nombre del Cliente");
 		id=v.leeEntero("Introduce la id del Cliente");
-		searchKeyClient(id);
+		id=searchKeyClient(id);
 		phone=v.leeString("Introduce el numero de telefono del Cliente");
 		LocalDateTime time=LocalDateTime.now();
 		address=v.leeString("Introduce la direccion del cliente");
@@ -67,65 +64,68 @@ public class Utils {
 		Client c = new Client(id,name,phone,time,address,age);
 		return c;
 	}
-	public Reservation readReservation(Client c,Copia copia) {
+	public void readReservation(Client c,Copia copia) {
 		LocalDateTime Hora =LocalDateTime.now();
 		LocalDateTime endr = Hora.plusWeeks(6);
 		Integer id = v.leeEntero("Introduzca ID de la reserva");
-		Status estado = v.leeStatus("Introzca el estado de la reserva");
-		Reservation Reserva = new Reservation(id,Hora,endr,estado,c,copia);
+		Reservation Reserva = new Reservation(id,Hora,endr,Status.RESERVADO,c,copia);
 		Rr.addReservation(Reserva);
-		Rr.getReservations().get(Reserva.getID()).setStatus(Status.RESERVADO);
-		rc.delCopy(copia);
-		return Reserva;
+		rCopy.removeCopy(copia);
 	}
-	public Copia copyGenerator(IProduct p){
+	
+	public Copia copyGenerator(Product p){
 		int cont=0;
-		while(cont<p.getNCopias()) {
-			Integer idcopy=this.idGenerator();
-			ICopia c = new Copia(p.getName(),p.getPrice(),p.getDescription(),p.getID(),p.getNCopias(),p.getCategory(),idcopy);
-			rc.addCopy(c,p);
+	while(cont<p.getNum_cop()) {
+			Integer idcopy=c.idGenerator();
+			Copia c = new Copia(p.getName(),p.getPrice(),p.getDescription(),p.getID(),p.getNum_cop(),p.getCategory(),idcopy);
+			rCopy.addCopy(c);
 			cont++;
-		}
-		return (Copia)c;
 	}
-	public Integer idGenerator(){
-		int max = 200;
-		int min= 1;
-		Integer n=0;
-		Random random = new Random();
-		n=random.nextInt(max + min) + min;
-		return n;
-	}
-	public void esperar(int segundos) {
-		try {
-			Thread.sleep(segundos * 1000);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
+		return c;
 	}
 	public Integer searchKeyProduct(Integer id) {
 		Integer newid;
-		while (rProduct.Contains(id)) {
-			v.print("Esta id ya esta asociada a otro producto");
-			newid = v.leeEntero("Introduzca la id");
-			id = newid;
+		if (!rClient.Contains(id)) {
+			v.print("La id está disponible y se le ha asociado correctamente");
+		} else {
+			while (rProduct.Contains(id)) {
+				v.print("Esta id ya esta asociada a otro producto");
+				newid = v.leeEntero("Introduzca la id");
+				id = newid;
+			}
 		}
 		return id;
 	}
 
 	public Integer searchKeyClient(Integer id) {
 		Integer newid;
+		if (!rClient.Contains(id)) {
+			v.print("La id está disponible y se le ha asociado correctamente");
+		} else {
+			while (rClient.Contains(id)) {
+				v.print("Esta id ya esta asociada a otro cliente\n");
+				newid = v.leeEntero("Introduzca otra id");
+				id = newid;
 		while (rClient.Contains(id)) {
 			if (!rClient.Contains(id)) {
 				v.print("La id estï¿½ disponible y se le ha asociado correctamente");
 			}
-			v.print("Esta id ya esta asociada a otro cliente\n");
-			newid = v.leeEntero("Introduzca otra id");
-			id = newid;
+		}
+		
+	}
 		}
 		return id;
 	}
+	
+	public void removeReserva() {
+		Integer id = v.leeEntero("Introduzla el id de la reserva que quiera borrar");
+		Rr.delReservation(id);			
+	}
+	
+	
+	
+	
+	
 	
 	
 	

@@ -8,16 +8,23 @@ import Interfaces.IReservation;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 public class Reservation implements Serializable, IReservation {
 
 	private static final long serialVersionUID = 1L;
 
-    private Integer ID;
-    private LocalDateTime DateReser;
-    private LocalDateTime FinalDate;
-    private Status status;
-    private IClient client;
-    private ICopia copia;
+	 private Integer ID;
+	 @XmlElement
+	 @XmlJavaTypeAdapter(type = LocalDateTime.class, value = Adapters.LocalDateTimeBind.class)
+	 private LocalDateTime DateReser;
+	 @XmlElement
+	 @XmlJavaTypeAdapter(type = LocalDateTime.class, value = Adapters.LocalDateTimeBind.class)
+	 private LocalDateTime FinalDate;
+	 private Status status;
+	 private Client client;
+	 private Copia copia;
 
     public Reservation(){
         this.ID=-1;
@@ -28,13 +35,13 @@ public class Reservation implements Serializable, IReservation {
         this.copia=null;
     }
 
-    public Reservation(Integer ID, LocalDateTime Date, LocalDateTime FinalDate, Status status,IClient client, ICopia copia){
+    public Reservation(Integer ID, LocalDateTime Date, LocalDateTime FinalDate, Status status,Client client,Copia copy){
         this.ID=ID;
         this.DateReser=Date;
         this.FinalDate=FinalDate;
         this.status=status;
         this.client=client;
-        this.copia=copia;
+        this.copia=copy;
     }
    
     public Integer getID() {
@@ -72,18 +79,6 @@ public class Reservation implements Serializable, IReservation {
         return client;
     }
 
-    public void setClient(IClient client) {
-        this.client = client;
-    }
-
-    public ICopia getCopia() {
-        return copia;
-    }
-
-    public void setCopia(ICopia copia) {
-        this.copia = copia;
-    }
-
     public boolean equals(Object obj){
         boolean valid=false;
         if(obj!=null) {
@@ -112,4 +107,19 @@ public class Reservation implements Serializable, IReservation {
                 ", copia=" + copia +
                 '}';
     }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Product getCopia() {
+        return copia;
+    }
+
+
+    public void setCopia(Copia copy) {
+        this.copia = copy;
+    }
+
+	
 }
