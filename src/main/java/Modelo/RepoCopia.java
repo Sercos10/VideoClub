@@ -27,8 +27,8 @@ public class RepoCopia implements Serializable, IRepoCopia {
 		return RC;
 	}
 	/**
-	 * Metodo que añade una copia al hashmap de copias
-	 * @param c La copia que queremos que añada a la lista
+	 * Metodo que anade una copia al hashmap de copias
+	 * @param c La copia que queremos que anada a la lista
 	 */
 	public void addCopy(Copia c) {
 		ListaCopias.add(c);

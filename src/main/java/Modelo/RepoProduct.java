@@ -36,9 +36,9 @@ public class RepoProduct implements IRepoProduct {
 		return _instance;
 	}
 	/**
-	 * Metodo para añadir un producto a la lista
+	 * Metodo para anadir un producto a la lista
 	 * @param p producto que queremos meter en la lista
-	 * @return devuelve true si lo ha añadido bien o false si no
+	 * @return devuelve true si lo ha aï¿½adido bien o false si no
 	 */
 	public boolean addProduct(IProduct p) {
 		boolean added = false;
@@ -102,8 +102,8 @@ public class RepoProduct implements IRepoProduct {
 		return productList.containsKey(id);
 	}
 	/**
-	 * Metodo que nos dice si la Lista de productos está vacía
-	 * @return devuelve true si la lista está vacia o false si no lo está
+	 * Metodo que nos dice si la Lista de productos esta vacia
+	 * @return devuelve true si la lista esta vacia o false si no lo esta
 	 */
 	public boolean isEmpty() {
 		return productList.isEmpty();
@@ -153,7 +153,7 @@ public class RepoProduct implements IRepoProduct {
 	}
 	/**
 	 * Metodo para buscar un producto por su id
-	 * @param id del producto que queremos buscar pasada como parametro
+	 * @param ID del producto que queremos buscar pasada como parametro
 	 * @return devuelve el producto si lo ha encontrado
 	 */
 	public IProduct searchProduct(Integer ID) {

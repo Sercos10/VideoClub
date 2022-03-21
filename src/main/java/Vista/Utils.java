@@ -113,7 +113,7 @@ public class Utils {
 	public Integer searchKeyProduct(Integer id) {
 		Integer newid;
 		if (!rClient.Contains(id)) {
-			v.print("La id está disponible y se le ha asociado correctamente");
+			v.print("La id esta disponible y se le ha asociado correctamente");
 		} else {
 			while (rProduct.Contains(id)) {
 				v.print("Esta id ya esta asociada a otro producto");
@@ -132,7 +132,7 @@ public class Utils {
 	public Integer searchKeyClient(Integer id) {
 		Integer newid;
 		if (!rClient.Contains(id)) {
-			v.print("La id está disponible y se le ha asociado correctamente");
+			v.print("La id esta disponible y se le ha asociado correctamente");
 		} else {
 			while (rClient.Contains(id)) {
 				v.print("Esta id ya esta asociada a otro cliente\n");
@@ -140,7 +140,7 @@ public class Utils {
 				id = newid;
 		while (rClient.Contains(id)) {
 			if (!rClient.Contains(id)) {
-				v.print("La id estï¿½ disponible y se le ha asociado correctamente");
+				v.print("La id esta disponible y se le ha asociado correctamente");
 			}
 		}
 		
