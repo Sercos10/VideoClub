@@ -2,6 +2,10 @@ package Interfaces;
 
 import Enums.Category;
 
+/**
+ * Interfaz que implementa a la clase Product
+ * @author franc
+ */
 public interface IProduct {
     Float getPrice();
     String getDescription();

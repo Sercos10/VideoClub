@@ -5,6 +5,10 @@ import Modelo.Product;
 
 import java.util.HashMap;
 
+/**
+ * Interfaz que implementa a la clase RepoProduct
+ * @author franc
+ */
 public interface IRepoProduct {
 	HashMap<Integer, Product> getProductList();
 	boolean addProduct (IProduct p);

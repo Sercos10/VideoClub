@@ -5,6 +5,10 @@ import Modelo.Client;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
+/**
+ * Interfaz que implementa a la clase RepoClient
+ * @author franc
+ */
 public interface IReposClient {
 	HashMap<Integer, Client> getClientList();
 	void modifyName(Integer ID, String name);

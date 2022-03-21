@@ -100,6 +100,11 @@ public class Client implements Serializable, IClient{
 		Age = age;
 	}
 	
+	/**
+	 * Método para comprobar si un objeto es igual
+	 * @param Objeto recibido
+	 * @return Si es igual
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		boolean valid=false;
@@ -118,6 +123,9 @@ public class Client implements Serializable, IClient{
 		return valid;
 	}
 
+	/**
+	 * Método para generar un String
+	 */
 	@Override
 	public String toString() {
 		return "Client [ID=" + ID + ", Name=" + Name + ", Phone=" + Phone + ", Time=" + Time + "]";

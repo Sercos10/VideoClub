@@ -7,6 +7,10 @@ import Modelo.Product;
 
 import java.time.LocalDateTime;
 
+/**
+ * Interfaz que implementa a la clase Reservation
+ * @author franc
+ */
 public interface IReservation {
     Integer getID();
     void setID(Integer ID);
