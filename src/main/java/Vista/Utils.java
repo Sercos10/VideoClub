@@ -81,7 +81,7 @@ public class Utils {
 	 */
 	public void readReservation(Client c,Copia copia) {
 		LocalDateTime Hora =LocalDateTime.now();
-		LocalDateTime endr = Hora.plusWeeks(6);
+		String endr = v.leeString("Introduce la fecha final de la reserva");
 		Integer id = v.leeEntero("Introduzca ID de la reserva");
 		Reservation Reserva = new Reservation(id,Hora,endr,Status.RESERVADO,c,copia);
 		Rr.addReservation(Reserva);

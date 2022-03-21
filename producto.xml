@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RepoProduct>
+    <productList>
+        <entry>
+            <key>34</key>
+            <value identificador="34">
+                <Name>pes</Name>
+                <price>56.0</price>
+                <description>2019</description>
+                <category>JUEGOS</category>
+                <num_cop>3</num_cop>
+            </value>
+        </entry>
+        <entry>
+            <key>23</key>
+            <value identificador="23">
+                <Name>roblox</Name>
+                <price>45.0</price>
+                <description>cubitos</description>
+                <category>JUEGOS</category>
+                <num_cop>2</num_cop>
+            </value>
+        </entry>
+        <entry>
+            <key>56</key>
+            <value identificador="56">
+                <Name>minecraft</Name>
+                <price>33.0</price>
+                <description>cubosx2</description>
+                <category>JUEGOS</category>
+                <num_cop>4</num_cop>
+            </value>
+        </entry>
+        <entry>
+            <key>12</key>
+            <value identificador="12">
+                <Name>fifa</Name>
+                <price>67.0</price>
+                <description>2018</description>
+                <category>JUEGOS</category>
+                <num_cop>3</num_cop>
+            </value>
+        </entry>
+    </productList>
+</RepoProduct>

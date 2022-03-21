@@ -38,7 +38,9 @@ public class Controlador implements IController {
 	 * @param op opcion que le pasamos al programa para elegir donde queremos ir
 	 */
 	private void switchMain(int op) {
-
+		RepoCliente.loadFile("cliente.xml");
+		RepoProducto.loadFile("producto.xml");
+		RepoReserva.loadFile("reserva.xml");
 		switch (op) {
 		case 1:
 			vista.showMenuClient();
@@ -63,7 +65,6 @@ public class Controlador implements IController {
 		case 1:
 			RepoCliente.addClient(u.readClient());
 			RepoCliente.saveFile("cliente.xml");
-			vista.separar();
 			vista.showMenuClient();
 			switchMenuCliente(vista.opcMenu7());
 			break;
@@ -71,7 +72,6 @@ public class Controlador implements IController {
 			Integer id6 = vista.leeEntero("Introduce el ID del cliente");
 			RepoCliente.removeClient(id6);
 			RepoCliente.saveFile("cliente.xml");
-			vista.separar();
 			vista.showMenuClient();
 			switchMenuCliente(vista.opcMenu7());
 			break;
@@ -81,14 +81,12 @@ public class Controlador implements IController {
 			break;
 		case 4:
 			vista.showClientList(RepoCliente.getClientList());
-			vista.separar();
 			vista.showMenuClient();
 			switchMenuCliente(vista.opcMenu7());
 			break;
 		case 5:
 			Integer id = vista.leeEntero("Introduce el ID del cliente");
 			vista.showClient(RepoCliente.searchClient(id));
-			vista.separar();
 			vista.showMenuClient();
 			switchMenuCliente(vista.opcMenu7());
 			break;
@@ -113,7 +111,6 @@ public class Controlador implements IController {
 		case 1:
 			RepoProducto.addProduct(u.readProduct());
 			RepoProducto.saveFile("producto.xml");
-			vista.separar();
 			vista.showMenuProduct();
 			switchMenuProduct(vista.opcMenu6());
 			break;
@@ -121,7 +118,6 @@ public class Controlador implements IController {
 			Integer id7 = vista.leeEntero("Introduce el ID del cliente");
 			RepoProducto.removeProduct(id7);
 			RepoProducto.saveFile("producto.xml");
-			vista.separar();
 			vista.showMenuProduct();
 			switchMenuProduct(vista.opcMenu6());
 			break;
@@ -131,14 +127,12 @@ public class Controlador implements IController {
 			break;
 		case 4:
 			vista.showProductList(RepoProducto.getProductList());
-			vista.separar();
 			vista.showMenuProduct();
 			switchMenuProduct(vista.opcMenu6());
 			break;
 		case 5:
 			Integer id2 = vista.leeEntero("Introduce el ID del producto");
 			vista.showClient(RepoProducto.searchProduct(id2));
-			vista.separar();
 			vista.showMenuProduct();
 			switchMenuProduct(vista.opcMenu6());
 			break;
@@ -162,7 +156,6 @@ public class Controlador implements IController {
 			String name = vista.leeString("Introduzca el nuevo nombre");
 			RepoCliente.modifyName(id, name);
 			RepoCliente.saveFile("cliente.xml");
-			vista.separar();
 			vista.showMenuModifyClient();
 			switchMenuModifyClient(vista.opcMenu5());
 			break;
@@ -172,7 +165,6 @@ public class Controlador implements IController {
 			String telef = vista.leeString("Introduzca el nuevo telefono");
 			RepoCliente.modifyPhone(id2, telef);
 			RepoCliente.saveFile("cliente.xml");
-			vista.separar();
 			vista.showMenuModifyClient();
 			switchMenuModifyClient(vista.opcMenu5());
 			break;
@@ -182,7 +174,6 @@ public class Controlador implements IController {
 			String dir = vista.leeString("Introduzca la nueva direccion");
 			RepoCliente.modifyAddress(id4, dir);
 			RepoCliente.saveFile("cliente.xml");
-			vista.separar();
 			vista.showMenuModifyClient();
 			switchMenuModifyClient(vista.opcMenu5());
 			break;
@@ -192,7 +183,6 @@ public class Controlador implements IController {
 			Integer edad = vista.leeEntero("Introduzca la edad");
 			RepoCliente.modifyAge(id5, edad);
 			RepoCliente.saveFile("cliente.xml");
-			vista.separar();
 			vista.showMenuModifyClient();
 			switchMenuModifyClient(vista.opcMenu5());
 			break;
@@ -215,7 +205,6 @@ public class Controlador implements IController {
 			String name2 = vista.leeString("Introduzca el nombre del producto");
 			RepoProducto.modifyName(id6, name2);
 			RepoProducto.saveFile("producto.xml");
-			vista.separar();
 			vista.showMenuModifyProduct();
 			switchModifyProduct(vista.opcMenu5());
 			break;
@@ -225,7 +214,6 @@ public class Controlador implements IController {
 			String desc2 = vista.leeString("Introduzca la descripcion del producto");
 			RepoProducto.modifyDesc(id7, desc2);
 			RepoProducto.saveFile("producto.xml");
-			vista.separar();
 			vista.showMenuModifyProduct();
 			switchModifyProduct(vista.opcMenu5());
 			break;
@@ -235,7 +223,6 @@ public class Controlador implements IController {
 			Integer precio2 = vista.leeEntero("Introduzca el precio del producto");
 			RepoProducto.modifyPrize(id8, precio2);
 			RepoProducto.saveFile("producto.xml");
-			vista.separar();
 			vista.showMenuModifyProduct();
 			switchModifyProduct(vista.opcMenu5());
 			break;
@@ -245,7 +232,6 @@ public class Controlador implements IController {
 			Category cate2 = vista.leeCategory("Introduzca la nueva categoria");
 			RepoProducto.modifyCategory(id9, cate2);
 			RepoProducto.saveFile("producto.xml");
-			vista.separar();
 			vista.showMenuModifyProduct();
 			switchModifyProduct(vista.opcMenu5());
 			break;
@@ -265,7 +251,6 @@ public class Controlador implements IController {
 		case 1:
 			this.newReserva();
 			RepoReserva.saveFile("reserva.xml");
-			vista.separar();
 			vista.showMenuReservation();
 			switchMenuReservation(vista.opcMenu6());
 			break;
@@ -273,7 +258,6 @@ public class Controlador implements IController {
 			Integer id9 = vista.leeEntero("Introduce la ID de la reserva");
 			RepoReserva.delReservation(id9);
 			RepoReserva.saveFile("reserva.xml");
-			vista.separar();
 			vista.showMenuReservation();
 			switchMenuReservation(vista.opcMenu6());
 			break;
@@ -286,14 +270,12 @@ public class Controlador implements IController {
 				vista.print("No hay Reservas para mostrar");
 			}
 			vista.showReservationList(RepoReserva.getReservations());
-			vista.separar();
 			vista.showMenuReservation();
 			switchMenuReservation(vista.opcMenu6());
 			break;
 		case 5:
 			Integer id10 = vista.leeEntero("Introduce la ID de la reserva");
 			vista.showClient(RepoReserva.searchReservation(id10));
-			vista.separar();
 			vista.showMenuReservation();
 			switchMenuReservation(vista.opcMenu6());
 			break;
@@ -315,7 +297,6 @@ public class Controlador implements IController {
 			Status st = vista.leeStatus("Introduce el nuevo status de la reserva");
 			RepoReserva.modifyStatus(id11, st);
 			RepoReserva.saveFile("reserva.xml");
-			vista.separar();
 			vista.showMenuModifyReservation();
 			switchMenuModifyReservation(vista.opcMenu3());
 			break;

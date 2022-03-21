@@ -16,8 +16,8 @@ public interface IReservation {
     void setID(Integer ID);
     LocalDateTime getDateReser();
     void setDateReser(LocalDateTime dateReser);
-    LocalDateTime getFinalDate();
-    void setFinalDate(LocalDateTime finalDate);
+    String getFinalDate();
+    void setFinalDate(String finalDate);
     Status getStatus();
     void setStatus(Status status);
     IClient getClient();
