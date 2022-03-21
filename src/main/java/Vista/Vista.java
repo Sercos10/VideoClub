@@ -32,6 +32,10 @@ public class Vista implements IVista{
 		}
 		return mivista;
 	}
+	
+	public void separar() {
+		System.out.println("------------------------------------------------------------------------------");
+	}
 
 	/**
 	 * Metodo de la vista principal del menu

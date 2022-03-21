@@ -36,4 +36,5 @@ public interface IVista {
     Integer opcMenu4();
     void showClient(Object O);
     void showCopyList(Integer id);
+    void separar();
 }
