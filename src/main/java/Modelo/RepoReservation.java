@@ -62,7 +62,7 @@ public class RepoReservation implements Serializable, IRespoReservation {
      * @param ID de la reserva a querer cambiar la fecha final
      * @param date fecha final pasada por parametro
      */
-    public void modifyFechaFinal(Integer ID, LocalDateTime date) {
+    public void modifyFechaFinal(Integer ID, String date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setFinalDate(date);
         }

@@ -14,7 +14,7 @@ public interface IRespoReservation {
 	HashMap<Integer, Reservation> getReservations();
 	void addReservation(Reservation r);
 	void delReservation(Integer ID);
-	void modifyFechaFinal(Integer ID, LocalDateTime date);
+	void modifyFechaFinal(Integer ID, String date);
 	void modifyStatus(Integer ID, Status status);
 	IReservation searchReservation(Integer ID);
     void saveFile(String url);

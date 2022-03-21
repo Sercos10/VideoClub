@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RepoReservation>
+    <reservations>
+        <entry>
+            <key>11</key>
+            <value>
+                <DateReser>2022-03-21 21:26:18:35</DateReser>
+                <finalDate>03-05-2022</finalDate>
+                <ID>11</ID>
+                <status>RESERVADO</status>
+            </value>
+        </entry>
+    </reservations>
+</RepoReservation>
