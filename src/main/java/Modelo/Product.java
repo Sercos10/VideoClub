@@ -85,8 +85,8 @@ public class Product implements IProduct, Serializable {
 	}
 
 	public String toString() {
-		return "Product Name=" + Name + "Price=" + price + "\n description=" + description + "\n id=" + id
-				+ "\n category=" + category + "\n num_cop=" + num_cop;
+		return " Nombre Del Producto=" + Name + ", Precio= " + price + ", Description= " + description + ", ID= " + id + ", Categoria= " + category + ", Nº Copias= " + num_cop+"\n"
+	            + "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 	}
 
 	public Product() {
