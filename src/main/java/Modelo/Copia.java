@@ -38,11 +38,15 @@ public class Copia extends Product implements Serializable{
 	public void setId_copia(Integer id_copia) {
 		this.id_copia = id_copia;
 	}
-
+	
 	public String toString() {
 		return "Copia del Producto= "+super.getName() +" ID copia= " + id_copia;
 	}
-
+	
+	/**
+	 * Metodo para generar un id aleatorio entre 1 y 200.
+	 * @return devolvemos el numero generado.
+	 */
 	public Integer idGenerator(){
 		int max = 200;
 		int min= 1;

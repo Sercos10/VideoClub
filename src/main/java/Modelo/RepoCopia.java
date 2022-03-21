@@ -26,7 +26,6 @@ public class RepoCopia implements Serializable, IRepoCopia {
 		}
 		return RC;
 	}
-
 	public void addCopy(Copia c) {
 		ListaCopias.add(c);
 	}
@@ -56,19 +55,19 @@ public class RepoCopia implements Serializable, IRepoCopia {
 	public void removeCopy(Copia c) {
 		ListaCopias.remove(c);
 	}
-
+	
 	public Copia getCopy(Integer id) {
 		Copia aux = new Copia();
-		for(Copia c : ListaCopias) {
-			if(c.getId_copia()==id) {
+		for (Copia c : ListaCopias) {
+			if (c.getId_copia() == id) {
 				System.out.println(c);
-			aux=c;
-			return aux;
+				aux = c;
+				return aux;
 			}
 		}
 		return aux;
-			
-		}
+
+	}
 
 	public void loadFile(String url) {
 		JAXBContext contexto;
