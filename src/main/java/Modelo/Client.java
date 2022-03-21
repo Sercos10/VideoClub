@@ -101,8 +101,8 @@ public class Client implements Serializable, IClient{
 	}
 	
 	/**
-	 * Método para comprobar si un objeto es igual
-	 * @param Objeto recibido
+	 * Metodo para comprobar si un objeto es igual
+	 * @param obj  Objeto recibido
 	 * @return Si es igual
 	 */
 	@Override
@@ -124,7 +124,7 @@ public class Client implements Serializable, IClient{
 	}
 
 	/**
-	 * Método para generar un String
+	 * Metodo para generar un String
 	 */
 	@Override
 	public String toString() {

@@ -84,14 +84,23 @@ public class Product implements IProduct, Serializable {
 		num_cop = nCopias;
 	}
 
+	/**
+	 * Metodo para generar el toString de producto
+	 * @return
+	 */
 	public String toString() {
-		return " Nombre Del Producto=" + Name + ", Precio= " + price + ", Description= " + description + ", ID= " + id + ", Categoria= " + category + ", Nº Copias= " + num_cop+"\n"
+		return " Nombre Del Producto=" + Name + ", Precio= " + price + ", Description= " + description + ", ID= " + id + ", Categoria= " + category + ", NÂº Copias= " + num_cop+"\n"
 	            + "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 	}
 
 	public Product() {
 	}
 
+	/**
+	 * Metodo para comprobar si un producto es igual a otro
+	 * @param obj  Objeto recibido
+	 * @return Si es igual
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

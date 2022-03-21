@@ -149,11 +149,11 @@ public class Vista implements IVista{
 	
 	/**
 	 * Metodo que muestra todas las reservas que se encuentra en el hashmap
-	 * @param c
+	 * @param r
 	 */
-	public void showReservations(HashMap <Integer, Reservation> c){
-		for(Integer key:c.keySet()) {
-			System.out.println("ID: " +key+ "Value: " +c.get(key));
+	public void showReservations(HashMap <Integer, Reservation> r){
+		for(Integer key:r.keySet()) {
+			System.out.println("ID: " +key+ "Value: " +r.get(key));
 		}
 	}
 	

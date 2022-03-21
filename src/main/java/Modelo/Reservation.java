@@ -79,6 +79,11 @@ public class Reservation implements Serializable, IReservation {
         return client;
     }
 
+    /**
+     * Metodo para comprobar si una reserva es igual a otra
+     * @param obj  Objeto recibido
+     * @return Si es igual
+     */
     public boolean equals(Object obj){
         boolean valid=false;
         if(obj!=null) {
@@ -96,6 +101,10 @@ public class Reservation implements Serializable, IReservation {
         return valid;
     }
 
+    /**
+     * Metodo para generar el toString de reserva
+     * @return
+     */
     @Override
     public String toString() {
         return "Reservation{" +

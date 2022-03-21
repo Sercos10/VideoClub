@@ -40,56 +40,75 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
         return _instance;
     }
+
+    /**
+     * Metodo para añadir una reserva a la coleccion
+     * @param r reserva a ser añadida
+     */
     public void addReservation(Reservation r) {
     	reservations.put(r.getID(), r);
     }
 
+    /**
+     * Metodo para eliminar una reserva
+     * @param ID de la reserva a eliminar
+     */
     public void delReservation(Integer ID){
     	reservations.remove(ID);
     }
 
+    /**
+     * Metodo para modificar la fecha final de la reserva
+     * @param ID de la reserva a querer cambiar la fecha final
+     * @param date fecha final pasada por parametro
+     */
     public void modifyFechaFinal(Integer ID, LocalDateTime date) {
         if (reservations!=null&&reservations.containsKey(ID)){
             reservations.get(ID).setFinalDate(date);
         }
     }
 
+    /**
+     * Metodo para modificar la categoria de un producto
+     * @param ID para saber de que producto queremos cambiar la categoria pasado como parametro
+     * @param status el nuevo Status pasada como parametro
+     */
     public void modifyStatus(Integer ID, Status status) {
         if (reservations != null && reservations.containsKey(ID)) {
             reservations.get(ID).setStatus(status);
         }
     }
 
-    public Integer ReserCount(){
-        int cont=0;
-        for (Reservation r: reservations.values()) {
-            if (r!=null)
-                cont++;
-        }
-        return cont;
-    }
-    
+    /**
+     * Metodo para buscar un producto por su id
+     * @param ID del producto que queremos buscar pasada como parametro
+     * @return devuelve la reserva si lo ha encontrado
+     */
     public IReservation searchReservation(Integer ID) {
 		return(this.reservations.get(ID));
 	}
 
-    public void showReservations(){
-        if (reservations!=null){
-            for (Map.Entry<Integer, Reservation> r : reservations.entrySet()) {
-                System.out.println("ID= " + r.getKey());
-                System.out.println("Reserva= " + r.getValue());
-            }
-        }
-    }
-    
+    /**
+     * Metodo para saber si existe una reserva asignada a la id pasada por parametro
+     * @param id ID pasada por parametro
+     * @return true si existe una reserva asignada a esa id o false si no existe
+     */
     public boolean Contains(Integer id) {
 		return reservations.containsKey(id);
 	}
-    
+
+    /**
+     * Metodo para saber si la coleccion de reservas esta vacia
+     * @return true si esta vacia o false si hay una reserva como minimo guardada
+     */
 	public boolean isEmpty() {
 		return reservations.isEmpty();
 	}
 
+    /**
+     * Metodo para guardar los productos en un xml
+     * @param url Archivo donde se van a guardar dichas productos.
+     */
     public void saveFile(String url) {
         JAXBContext contexto;
         try {
@@ -104,6 +123,10 @@ public class RepoReservation implements Serializable, IRespoReservation {
         }
     }
 
+    /**
+     * Metodo para cargar la Lista de productos de un xml
+     * @param url el archivo del que queremos cargar la Lista de Productos
+     */
     public void loadFile(String url) {
         JAXBContext contexto;
         try {
