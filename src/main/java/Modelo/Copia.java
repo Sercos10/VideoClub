@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Random;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -38,17 +37,9 @@ public class Copia extends Product implements Serializable{
 	public void setId_copia(Integer id_copia) {
 		this.id_copia = id_copia;
 	}
-
+	
 	public String toString() {
-		return "Copia del Producto= "+super.getName() +" ID copia= " + id_copia;
+		return " Copia del Producto= "+super.getName() +", ID copia= " + id_copia;
 	}
 
-	public Integer idGenerator(){
-		int max = 200;
-		int min= 1;
-		Integer n=0;
-		Random random = new Random();
-		n=random.nextInt(max + min) + min;
-		return n;
-	}
 }

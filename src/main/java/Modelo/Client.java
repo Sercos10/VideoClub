@@ -128,7 +128,8 @@ public class Client implements Serializable, IClient{
 	 */
 	@Override
 	public String toString() {
-		return "Client [ID=" + ID + ", Name=" + Name + ", Phone=" + Phone + ", Time=" + Time + "]";
+		return "Client ID=" + ID + ", Nombre=" + Name + ", Telefono=" + Phone + ", Fecha de Alta=" + Time+"\n" 
+	            + "--------------------------------------------------------------------------------------------------------------";
 	}
 
 }

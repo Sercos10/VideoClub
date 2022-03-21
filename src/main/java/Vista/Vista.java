@@ -8,6 +8,7 @@ import Enums.Category;
 import Enums.Status;
 import Interfaces.IVista;
 import Modelo.Client;
+import Modelo.Copia;
 import Modelo.Product;
 import Modelo.RepoCopia;
 import Modelo.Reservation;
@@ -161,7 +162,11 @@ public class Vista implements IVista{
 	 * @param id de la copia que vamos a elegir
 	 */
 	public void showCopyList(Integer id) {
-		rCopia.CopyByIdProduct(id);
+		for (Copia c : rCopia.getCopyList()) {
+			if (c.getID() == id) {
+				System.out.println(c);
+			}
+		}
 	}
 
 	/**
