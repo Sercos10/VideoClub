@@ -2,6 +2,10 @@ package Interfaces;
 
 import java.time.LocalDateTime;
 
+/**
+ * Interfaz que implementa a la clase Client
+ * @author franc
+ */
 public interface IClient {
     Integer getID();
     String getName();

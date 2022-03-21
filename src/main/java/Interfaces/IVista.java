@@ -8,6 +8,10 @@ import Modelo.Client;
 import Modelo.Product;
 import Modelo.Reservation;
 
+/**
+ * Interfaz que implementa a la clase Vista
+ * @author franc
+ */
 public interface IVista {
     void showMainMenu();
     void showMenuClient();

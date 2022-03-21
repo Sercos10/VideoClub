@@ -6,6 +6,10 @@ import Modelo.Reservation;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
+/**
+ * Interfaz que implementa a la clase RepoReservation
+ * @author franc
+ */
 public interface IRespoReservation {
 	HashMap<Integer, Reservation> getReservations();
 	void addReservation(Reservation r);
