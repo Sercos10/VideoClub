@@ -20,19 +20,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RepoClient implements Serializable, IReposClient{
 	
-	/**
-	 * Metodo para XML
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * Metodo para declarar la instancia
-	 */
 	private static RepoClient _instance;
 	
-	/**
-	 * Metodo para declarar la lista
-	 */
 	private HashMap <Integer, Client> clientlist;
 	
 	/**

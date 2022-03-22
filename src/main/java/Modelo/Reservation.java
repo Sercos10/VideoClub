@@ -17,9 +17,7 @@ public class Reservation implements Serializable, IReservation {
 
 	 private Integer ID;
 	 
-	 @XmlElement
-	 @XmlJavaTypeAdapter(type = LocalDateTime.class, value = Adapters.LocalDateTimeBind.class)
-	 private LocalDateTime DateReser;
+	 private String DateReser;
 	 
 	 private String FinalDate;
 	 
@@ -38,7 +36,7 @@ public class Reservation implements Serializable, IReservation {
         this.copia=null;
     }
 
-    public Reservation(Integer ID, LocalDateTime Date, String FinalDate, Status status,Client client,Copia copy){
+    public Reservation(Integer ID, String Date, String FinalDate, Status status,Client client,Copia copy){
         this.ID=ID;
         this.DateReser=Date;
         this.FinalDate=FinalDate;
@@ -54,11 +52,11 @@ public class Reservation implements Serializable, IReservation {
     public void setID(Integer ID) {
         this.ID = ID;
     }
-    public LocalDateTime getDateReser() {
+    public String getDateReser() {
         return this.DateReser;
     }
 
-    public void setDateReser(LocalDateTime dateReser) {
+    public void setDateReser(String dateReser) {
         DateReser = dateReser;
     }
 

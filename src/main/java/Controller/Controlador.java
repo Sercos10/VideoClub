@@ -40,7 +40,6 @@ public class Controlador implements IController {
 	private void switchMain(int op) {
 		RepoCliente.loadFile("cliente.xml");
 		RepoProducto.loadFile("producto.xml");
-		RepoReserva.loadFile("reserva.xml");
 		switch (op) {
 		case 1:
 			vista.showMenuClient();

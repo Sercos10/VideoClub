@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 public interface IReservation {
     Integer getID();
     void setID(Integer ID);
-    LocalDateTime getDateReser();
-    void setDateReser(LocalDateTime dateReser);
+    String getDateReser();
+    void setDateReser(String dateReser);
     String getFinalDate();
     void setFinalDate(String finalDate);
     Status getStatus();
