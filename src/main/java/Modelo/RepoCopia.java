@@ -8,8 +8,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import Interfaces.IRepoCopia;
 
+@XmlRootElement(name="RepoCopia")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RepoCopia implements Serializable, IRepoCopia {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Copia> ListaCopias;
@@ -48,7 +54,7 @@ public class RepoCopia implements Serializable, IRepoCopia {
 		JAXBContext contexto;
 		try {
 			contexto = JAXBContext.newInstance(RepoClient.class);
-			Marshaller m = contexto.createMarshaller();
+			Marshaller m = ((JAXBContext) contexto).createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
 			m.marshal(RC, new File(url));

@@ -80,12 +80,13 @@ public class Utils {
 	 * @param copia que mostramos y elegimos por teclado
 	 */
 	public void readReservation(Client c,Copia copia) {
-		LocalDateTime Hora =LocalDateTime.now();
+		String Hora = v.leeString("Introduce la fecha de creacion de la reserva");
 		String endr = v.leeString("Introduce la fecha final de la reserva");
 		Integer id = v.leeEntero("Introduzca ID de la reserva");
 		Reservation Reserva = new Reservation(id,Hora,endr,Status.RESERVADO,c,copia);
 		Rr.addReservation(Reserva);
 		rCopy.removeCopy(copia);
+
 	}
 	
 	/**
